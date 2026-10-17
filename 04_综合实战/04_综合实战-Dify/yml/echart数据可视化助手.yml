@@ -1,0 +1,273 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: echart数据可视化助手
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/siliconflow:0.0.33@6792acf632f24f1c41a3192a78ef181f7149811a8dfd9a16ade984978613f79c
+    version: null
+kind: app
+version: 0.4.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: parameter-extractor
+        targetType: code
+      id: 1761649122945-source-1761649168519-target
+      source: '1761649122945'
+      sourceHandle: source
+      target: '1761649168519'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: end
+      id: 1761649168519-source-1761649193855-target
+      source: '1761649168519'
+      sourceHandle: source
+      target: '1761649193855'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: document-extractor
+      id: 1761648666340-source-1761648747088-target
+      source: '1761648666340'
+      sourceHandle: source
+      target: '1761648747088'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: document-extractor
+        targetType: parameter-extractor
+      id: 1761648747088-source-1761649122945-target
+      source: '1761648747088'
+      sourceHandle: source
+      target: '1761649122945'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - document
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          default: ''
+          hint: ''
+          label: mdfile
+          max_length: 48
+          options: []
+          placeholder: ''
+          required: true
+          type: file
+          variable: mdfile
+      height: 87
+      id: '1761648666340'
+      position:
+        x: -23.775193452295582
+        y: 311.95125085287174
+      positionAbsolute:
+        x: -23.775193452295582
+        y: 311.95125085287174
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        is_array_file: false
+        selected: false
+        title: 文档提取器
+        type: document-extractor
+        variable_selector:
+        - '1761648666340'
+        - mdfile
+      height: 91
+      id: '1761648747088'
+      position:
+        x: 349
+        y: 301.31950791077287
+      positionAbsolute:
+        x: 349
+        y: 301.31950791077287
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        instruction: '将输入转换成一个字符串，示例如下 :
+
+          "[[''1月'', ''2月''], [''260'',''60'']]"'
+        model:
+          completion_params:
+            enable_thinking: false
+            temperature: 0.7
+          mode: chat
+          name: Qwen/Qwen3-8B
+          provider: langgenius/siliconflow/siliconflow
+        parameters:
+        - description: '# 任务
+
+            提取csv格式的字符串'
+          name: json_str
+          required: false
+          type: string
+        query:
+        - '1761648747088'
+        - text
+        reasoning_mode: prompt
+        selected: false
+        title: 参数提取器
+        type: parameter-extractor
+        vision:
+          enabled: false
+      height: 87
+      id: '1761649122945'
+      position:
+        x: 238.31867361667742
+        y: 507.7656402382912
+      positionAbsolute:
+        x: 238.31867361667742
+        y: 507.7656402382912
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "import json\n\ndef main(json_str: str):\n    # 1. 替换单引号为双引号（保证符合 JSON\
+          \ 标准格式）\n    json_string = json_str.replace(\"'\", '\"')\n\n    # 2. 解析为\
+          \ Python 列表\n    data = json.loads(json_string)\n    print(data)\n\n   \
+          \ # 3. 构造 ECharts 配置项\n    option = {\n        \"xAxis\": {\n          \
+          \  \"type\": \"category\",\n            \"data\": data[0]\n        },\n\
+          \        \"yAxis\": {\n            \"type\": \"value\"\n        },\n   \
+          \     \"series\": [\n            {\n                \"data\": data[1],\n\
+          \                \"type\": \"bar\",\n                \"showBackground\"\
+          : True,\n                \"backgroundStyle\": {\n                    \"\
+          color\": \"rgba(180, 180, 180, 0.2)\"\n                }\n            }\n\
+          \        ]\n    }\n\n    # 4. 输出 ECharts Markdown 格式\n    output = f\"```echarts\\\
+          n{json.dumps(option, ensure_ascii=False)}\\n```\"\n\n    return {\"result\"\
+          : output}\n"
+        code_language: python3
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行
+        type: code
+        variables:
+        - value_selector:
+          - '1761649122945'
+          - json_str
+          value_type: string
+          variable: json_str
+      height: 51
+      id: '1761649168519'
+      position:
+        x: 77.22533978598415
+        y: 757.8164802905851
+      positionAbsolute:
+        x: 77.22533978598415
+        y: 757.8164802905851
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        outputs:
+        - value_selector:
+          - '1761649168519'
+          - result
+          value_type: string
+          variable: result
+        selected: false
+        title: 结束
+        type: end
+      height: 87
+      id: '1761649193855'
+      position:
+        x: 583.2440631180921
+        y: 741.2236147275548
+      positionAbsolute:
+        x: 583.2440631180921
+        y: 741.2236147275548
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    viewport:
+      x: 182.16902056948516
+      y: 8.155099727579909
+      zoom: 0.629960524947436
+  rag_pipeline_variables: []

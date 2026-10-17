@@ -1,0 +1,1337 @@
+app:
+  description: ''
+  icon: 📝
+  icon_background: '#ECE9FE'
+  mode: workflow
+  name: SEO 博客生成工作流
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/siliconflow:0.0.33@6792acf632f24f1c41a3192a78ef181f7149811a8dfd9a16ade984978613f79c
+    version: null
+kind: app
+version: 0.4.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        sourceType: start
+        targetType: if-else
+      id: 1711529368293-1711540040432
+      selected: false
+      source: '1711529368293'
+      sourceHandle: source
+      target: '1711540040432'
+      targetHandle: target
+      type: custom
+    - data:
+        sourceType: variable-assigner
+        targetType: llm
+      id: 1711540519508-1711540331682
+      selected: false
+      source: '1711540519508'
+      sourceHandle: source
+      target: '1711540331682'
+      targetHandle: target
+      type: custom
+    - data:
+        sourceType: template-transform
+        targetType: end
+      id: 1711541379111-1711541407063
+      selected: false
+      source: '1711541379111'
+      sourceHandle: source
+      target: '1711541407063'
+      targetHandle: target
+      type: custom
+    - data:
+        sourceType: if-else
+        targetType: llm
+      id: 1711540040432-1711540280162
+      selected: false
+      source: '1711540040432'
+      sourceHandle: 'false'
+      target: '1711540280162'
+      targetHandle: target
+      type: custom
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: 1711540040432-true-1761617281849-target
+      selected: false
+      source: '1711540040432'
+      sourceHandle: 'true'
+      target: '1761617281849'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: llm
+      id: 1761617281849-source-1711540113584-target
+      selected: false
+      source: '1761617281849'
+      sourceHandle: source
+      target: '1711540113584'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: llm
+      id: 17616176798700-source-1711540755626-target
+      selected: false
+      source: '17616176798700'
+      sourceHandle: source
+      target: '1711540755626'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1711540113584-source-1761622000083-target
+      selected: false
+      source: '1711540113584'
+      sourceHandle: source
+      target: '1761622000083'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: variable-assigner
+      id: 1761622000083-source-1711540519508-target
+      selected: false
+      source: '1761622000083'
+      sourceHandle: source
+      target: '1711540519508'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1711540331682-source-17616225641710-target
+      selected: false
+      source: '1711540331682'
+      sourceHandle: source
+      target: '17616225641710'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: tool
+      id: 17616225641710-source-17616176798700-target
+      selected: false
+      source: '17616225641710'
+      sourceHandle: source
+      target: '17616176798700'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1711540755626-source-17616237456870-target
+      selected: false
+      source: '1711540755626'
+      sourceHandle: source
+      target: '17616237456870'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: llm
+      id: 17616237456870-source-1711541242630-target
+      selected: false
+      source: '17616237456870'
+      sourceHandle: source
+      target: '1711541242630'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1711541242630-source-17616237902230-target
+      selected: false
+      source: '1711541242630'
+      sourceHandle: source
+      target: '17616237902230'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: llm
+      id: 17616237902230-source-1711541250877-target
+      selected: false
+      source: '17616237902230'
+      sourceHandle: source
+      target: '1711541250877'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1711541250877-source-17616240581420-target
+      selected: false
+      source: '1711541250877'
+      sourceHandle: source
+      target: '17616240581420'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: template-transform
+      id: 17616240581420-source-1711541379111-target
+      selected: false
+      source: '17616240581420'
+      sourceHandle: source
+      target: '1711541379111'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1711540280162-source-17616312147830-target
+      source: '1711540280162'
+      sourceHandle: source
+      target: '17616312147830'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: variable-assigner
+      id: 17616312147830-source-1711540519508-target
+      source: '17616312147830'
+      sourceHandle: source
+      target: '1711540519508'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: 关键词
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: keyword
+        - label: 标题
+          max_length: null
+          options: []
+          required: false
+          type: paragraph
+          variable: title
+        - label: 受众
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: audience
+        - label: 需要避免的词/品牌
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: brands_to_avoid
+        - label: 语气
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: tone
+      dragging: false
+      height: 191
+      id: '1711529368293'
+      position:
+        x: 44.756977787688356
+        y: 339.5
+      positionAbsolute:
+        x: 44.756977787688356
+        y: 339.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: empty
+            id: '1711540046932'
+            value: ''
+            variable_selector:
+            - '1711529368293'
+            - title
+          id: 'true'
+          logical_operator: and
+        conditions:
+        - comparison_operator: empty
+          id: '1711540046932'
+          value: ''
+          variable_selector:
+          - '1711529368293'
+          - title
+        desc: ''
+        logical_operator: and
+        selected: false
+        title: 条件分支
+        type: if-else
+      dragging: false
+      height: 123
+      id: '1711540040432'
+      position:
+        x: 362.5
+        y: 339.5
+      positionAbsolute:
+        x: 362.5
+        y: 339.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: 生成标题
+        model:
+          completion_params:
+            enable_thinking: true
+            temperature: 0.7
+          mode: chat
+          name: Qwen/Qwen3-8B
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: a63bab70-237b-4c5d-9e5b-b84df97001ba
+          role: system
+          text: 你是一名SEO专家和主题领域专家。你的任务是根据用户提供的关键词以及BAILIAN搜索的上下文，生成一个SEO文章标题。注意了，最终只输出一个文章标题。
+        - id: f8beb5a0-411f-410b-9283-2776b77bdce0
+          role: user
+          text: '为了了解我的文章应该关于什么，这些是{{#1711529368293.keyword#}}的最高排名结果：{{#1711529368293.title#}}
+
+            是什么原则使这些排名靠前？'
+        - id: 1528aa59-1568-4c90-8ce5-12fede078cd1
+          role: assistant
+          text: '为了制作一个对关键词“{{#1711529368293.keyword#}}”友好的SEO文章标题，并且与你分享的排名靠前的结果中观察到的原则相符，理解这些标题之所以有效的原因很重要。以下是可能有助于它们高排名的原则：
+
+            1. **关键词的放置和清晰度**：每个标题通过包含精确关键词或非常接近的变体直接回应了查询。这种清晰度确保搜索引擎可以轻松理解内容的相关性。
+
+            2. **简洁和直接性**：标题简洁，使其易于快速阅读和理解。它们避免了不必要的词语，直奔主题。
+
+            3. **包含定义或解释**：标题暗示文章将定义或解释概念，这正是搜索“{{keyword}}”的人所寻找的。
+
+            4. **呈现的多样性**：尽管覆盖了类似的内容，每个标题都从略微不同的角度接近主题。这种多样性可以吸引更广泛的受众兴趣。'
+        - id: dec7c9c3-851d-4328-9d89-1f67e7cff321
+          role: user
+          text: 鉴于这些原则，请帮我生成一个标题，该标题将以模仿排名靠前的标题的语法为基础，针对关键词“{{#1711529368293.keyword#}}”进行优化。请不要复制，而是给出更好的选项，并避免使用“掌握”、“全面”、“发现”或“揭示”等语言。不要使用动名词，只用主动态、现在时。只需返回标题。
+        selected: false
+        title: LLM-生成标题
+        type: llm
+        variables:
+        - value_selector:
+          - '1711529368293'
+          - keyword
+          variable: keyword
+        - value_selector:
+          - '1711540832602'
+          - text
+          variable: text
+        vision:
+          enabled: false
+      dragging: false
+      height: 115
+      id: '1711540113584'
+      position:
+        x: 953.2723690402997
+        y: 250.72176080223926
+      positionAbsolute:
+        x: 953.2723690402997
+        y: 250.72176080223926
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: 生成关键词
+        model:
+          completion_params:
+            enable_thinking: true
+            temperature: 0.7
+          mode: chat
+          name: Qwen/Qwen3-8B
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 7be0c989-bd1d-4ed7-b3bc-1a715b8bd92a
+          role: system
+          text: '我正在为一篇名为{{#1711529368293.title#}}的文章做研究，请问我应该输入哪个与之相关且流量较高的短语到谷歌中以找到这篇文章？只需返回短语，不要包括任何特殊符号，如引号和冒号。
+
+            '
+        selected: false
+        title: LLM
+        type: llm
+        variables:
+        - value_selector:
+          - '1711529368293'
+          - title
+          variable: title
+        vision:
+          enabled: false
+      dragging: false
+      height: 115
+      id: '1711540280162'
+      position:
+        x: 757.9335364199906
+        y: 492.2986307758483
+      positionAbsolute:
+        x: 757.9335364199906
+        y: 492.2986307758483
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: 生成搜索语句
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: Qwen/Qwen3-8B
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 2850c49e-814b-4022-a412-8ad562d4432e
+          role: system
+          text: 我想要一个谷歌搜索短语，以便为我的文章《{{#1711529368293.title#}}{{#1761622000083.result#}}》，针对{{#1711529368293.audience#}}，获取权威信息。请返回一个五个词或更少的搜索短语，以便我能对这个主题有一个好的概述。包括任何你不熟悉的词在搜索查询中。
+        selected: false
+        title: LLM-生成搜索语句
+        type: llm
+        variables:
+        - value_selector:
+          - '1711529368293'
+          - title
+          variable: title
+        - value_selector:
+          - '1711529368293'
+          - keyword
+          variable: keyword
+        - value_selector:
+          - '1711529368293'
+          - audience
+          variable: audience
+        vision:
+          enabled: false
+      dragging: false
+      height: 115
+      id: '1711540331682'
+      position:
+        x: 1627.3745364322774
+        y: 430.7220647833832
+      positionAbsolute:
+        x: 1627.3745364322774
+        y: 430.7220647833832
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        advanced_settings:
+          group_enabled: false
+          groups:
+          - groupId: befa58c5-8772-4d05-b663-5e2edbcf1aad
+            group_name: Group1
+            output_type: string
+            variables:
+            - - '1761622000083'
+              - result
+            - - '17616307217160'
+              - result
+        desc: ''
+        output_type: string
+        selected: false
+        title: 变量赋值
+        type: variable-assigner
+        variables:
+        - - '1761622000083'
+          - result
+        - - '17616312147830'
+          - result
+      dragging: false
+      height: 133
+      id: '1711540519508'
+      position:
+        x: 1347.5131656217436
+        y: 418.0882385243608
+      positionAbsolute:
+        x: 1347.5131656217436
+        y: 418.0882385243608
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: 生成大纲
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: Qwen/Qwen3-8B
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: edde17a1-933c-4451-8804-87548ebebe11
+          role: system
+          text: "我是一位专家博客作者。\n这里有一些我为博客文章标题“{{#1711529368293.title#}}”所做的研究。请深入研究它：\n\
+            {\n文章标题：{{#1711529368293.title#}}\n目标关键词：{{#1711529368293.keyword#}}\n\
+            我的博客文章的受众：{{#1711529368293.audience#}}\n排除品牌：{{#1711529368293.brands_to_avoid#}}\n\
+            \n你能写一个包含独特章节的详细博客大纲吗？大纲应该包括文章可以提及的具体点和细节。避免泛泛之谈。这应该是深入研究的，而不是泛泛之谈。\n\
+            每个章节包括7-8个项目，如果可以的话，使用上面的一些链接作为参考。对于每一个项目，不要仅仅说“讨论怎样”，而是实际上详细解释可以提出的观点。不要包括你知道是假的东西，可能会有不准确之处。你是为一个成熟的受众写作，避免泛泛之谈，做具体的引用。确保在大纲中为用户定义关键术语。远离非常有争议的话题。在引言中，提供文章其余部分所需的背景信息。\n\
+            请以基础数组格式返回，并且只返回大纲数组，转义格式中的引号。每个数组项包括完整的章节：\n[\"包括所有子项目的第1章\",\"包括所有子项目的第2章\"\
+            ,\"包括所有子项目的第3章\",\"包括所有子项目的第4章\"...等\n每个章节都应该用\"\"封装，并且确保内容内的转义，以保证它是一个有效的数组项\n\
+            这里是一个有效输出的例子。请遵循这个结构，忽略内容：\n[\n  \"引言 - 探索充满活力的迈阿密城，这是一个提供丰富历史、多元文化和众多隐藏宝藏的目的地。发掘使迈阿密成为冒险寻求者独特目的地的鲜为人知的奇迹。探索从历史地标到异国情调的社区、本地美食和活跃的夜生活等众多景点。\"\
+            ,\n  \"迈阿密的历史 - 以进入迈阿密过去的旅程开始冒险。了解这座城市从一个宁静的定居点到繁忙都市的转变。理解多元文化对城市发展的影响，如在其建筑、美食和生活方式中所见。发现迈阿密地标如海明威的家的历史意义。揭露迈阿密著名社区如基韦斯特的迷人故事。探索艺术和文化在塑造迈阿密中的作用，如艺术巴塞尔活动所示。\"\
+            ,\n  \"主要景点 - 超越迈阿密著名的海滩，探索城市的主要景点。发现温伍德艺术区的艺术天才，以其充满活力的街头艺术而闻名。参观标志性的南海滩，以其夜生活和精品店而著名。探索迷人的椰子林区，以其树木成荫的街道和购物区而知名。参观大屠杀纪念馆，一个人类历史上黑暗章节的沉重提醒。探索迈阿密自然珍宝之一的埃弗格莱德斯国家公园的多样野生动物。\"\
+            ,\n  \"小路探索 - 离开游客小径，发现迈阿密的隐藏宝藏。体验穿越比斯坎湾的水上出租车之旅，以获取城市的另一种视角。参观鲜为人知的艺术Kabinett部门，展示独特的安装艺术。探索杜瓦尔街上的废弃桥梁和隐藏酒吧。在当地社区进行美食冒险，这些社区以其正宗美食而闻名。在布里克尔城市中心疯狂购物，这是迈阿密市中心的时尚购物和公寓综合体。\"\
+            ,\n  \"本地美食 - 深入迈阿密的美食场景，品尝城市的多样风味。在Bartaco享用超新鲜的食物和饮品，这是当地人的最爱。在高档意大利餐厅如Il\
+            \ Mulino New York体验精致的晚餐。探索城市的本地食品市场，品尝迈阿密本地生产的美味。尝试古巴和美国美食的独特融合，这证明了迈阿密的多元文化遗产。\"\
+            ,\n  \"夜生活 - 体验城市的活跃夜生活，完美融合了精致和乐趣。参观美国社交酒吧及厨房，这是体育\n爱好者的热点。探索玛丽布里克尔村的夜生活，以其俱乐部气氛而知名。在史密斯与沃伦斯基迈阿密海滩南点公园度过一个晚上，以其惊人的景观和老酒而著名。参观标志性的迈阿密海滩，以其脉动的夜生活而著名。\"\
+            ,\n  \"结论 - 迈阿密不仅仅是令人惊叹的海滩和炫目的夜生活。它是等待被发现的体验宝库。从其丰富的历史和多元文化到其隐藏的宝藏、本地美食和活跃的夜生活，迈阿密为每一位旅行者提供了独特的冒险。体验迈阿密海滩的魔力，与您的家人创建难忘的回忆。\"\
+            \n]"
+        selected: false
+        title: LLM-生成大纲
+        type: llm
+        variables:
+        - value_selector:
+          - '1711540113584'
+          - text
+          variable: title
+        - value_selector:
+          - '1711540280162'
+          - text
+          variable: keyword
+        - value_selector:
+          - '1711540065496'
+          - text
+          variable: google2
+        - value_selector:
+          - '1711529368293'
+          - audience
+          variable: audience
+        - value_selector:
+          - '1711529368293'
+          - brands_to_avoid
+          variable: brands_to_avoid
+        vision:
+          enabled: false
+      dragging: false
+      height: 115
+      id: '1711540755626'
+      position:
+        x: 1290.6609474561426
+        y: 670.9153125790242
+      positionAbsolute:
+        x: 1290.6609474561426
+        y: 670.9153125790242
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: 写开头
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: Qwen/Qwen3-8B
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 9cef6683-d986-48ac-8299-1c02c023b53a
+          role: system
+          text: '你是一位SEO专家，以直接、实用、教育性的口吻撰写文章，这种风格是事实陈述，而非讲故事或叙述风格，专注于向{{#1711529368293.audience#}}解释“如何做”、“什么是”和“为什么”，而不是向听众叙述。请以六年级学生的阅读水平来写作。仅以Markdown格式输出。
+
+            使用以下语调和声音：
+
+            {{#1711529368293.tone#}}
+
+            使用主动、现在时态，避免使用复杂的语言和句法，如“解开”、“深入探究”等，不进行叙述。
+
+            现在，不包括标题，用3-5句话介绍博客。然后，使用h2标题编写章节标题。然后提供一个简洁、符合SEO优化的标题。不要包括h3子标题。在合适的时候，可以自由使用项目符号、编号列表或段落，或用粗体文字强调。你应该自然地过渡到每个部分，基于每个部分进行扩展，而且不应该重复相同的句子结构。不要包含结论、总结或摘要，没有“总之”、“结论”或变体。不要包括链接或提及任何与品牌竞争的公司（避免提到{{#1711529368293.brands_to_avoid#}}）。
+
+            <文章大纲>
+
+            {{#17616237456870.result#}}
+
+            <引言>'
+        selected: false
+        title: LLM-写开头
+        type: llm
+        variables:
+        - value_selector:
+          - '1711529368293'
+          - audience
+          variable: audience
+        - value_selector:
+          - '1711529368293'
+          - tone
+          variable: tone
+        - value_selector:
+          - '1711540755626'
+          - text
+          variable: text
+        vision:
+          enabled: false
+      dragging: false
+      height: 115
+      id: '1711541242630'
+      position:
+        x: 1290.6609474561426
+        y: 862.0019347467385
+      positionAbsolute:
+        x: 1290.6609474561426
+        y: 862.0019347467385
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: 写文章主体
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: Qwen/Qwen3-8B
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 7f5d84da-08e1-4255-af9e-c3a5963bade6
+          role: system
+          text: '你是一位SEO专家，以直接、实用、教育性的语气撰写文章，这种语气是事实陈述而非叙事或叙述风格，专注于告知“如何做”、“是什么”和“为什么”，而不是向观众{{#1711529368293.audience#}}叙述。请以六年级的阅读水平写作。仅以Markdown格式输出。
+
+
+            用这些语气和文风：
+
+            {{#1711529368293.tone#}}
+
+            采用积极、现在时态的表达方式，避免使用像“揭示”、“深挖”等缺乏叙述性的复杂词汇和句式。
+
+
+            接下来，请以一个精炼的标题，继续撰写与我们主题相关的文章，{{#1711529368293.title#}}{{#1711529368293.keyword#}}。请避免重复已经写过的内容，也不要使用相同的句子结构。文章中无需包含结论部分。请利用我提供的信息，创作出深度有趣且独特的内容。同时，将我之前提供的参考资料和数据点融入文章中，以增加文章对读者的价值。
+
+            <文章大纲>
+
+            {{#17616237456870.result#}}
+
+            <文章主体>
+
+            '
+        selected: false
+        structured_output_enabled: false
+        title: LLM-写文章主体
+        type: llm
+        variables:
+        - value_selector:
+          - '1711529368293'
+          - audience
+          variable: audience
+        - value_selector:
+          - '1711529368293'
+          - tone
+          variable: tone
+        - value_selector:
+          - '1711540755626'
+          - text
+          variable: outline
+        - value_selector:
+          - '1711529368293'
+          - title
+          variable: title
+        - value_selector:
+          - '1711540113584'
+          - text
+          variable: text2
+        vision:
+          enabled: false
+      dragging: false
+      height: 115
+      id: '1711541250877'
+      position:
+        x: 2072.018855044478
+        y: 862.0019347467385
+      positionAbsolute:
+        x: 2072.018855044478
+        y: 862.0019347467385
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        desc: ''
+        selected: false
+        template: "{{ intro }}\r\n{{ body }}"
+        title: 模板变换
+        type: template-transform
+        variables:
+        - value_selector:
+          - '17616237902230'
+          - result
+          value_type: string
+          variable: intro
+        - value_selector:
+          - '17616240581420'
+          - result
+          value_type: string
+          variable: body
+      dragging: false
+      height: 51
+      id: '1711541379111'
+      position:
+        x: 2803.5017796726797
+        y: 862.0019347467385
+      positionAbsolute:
+        x: 2803.5017796726797
+        y: 862.0019347467385
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1711541379111'
+          - output
+          variable: output
+        selected: false
+        title: 结束
+        type: end
+      dragging: false
+      height: 87
+      id: '1711541407063'
+      position:
+        x: 3199.1344038359443
+        y: 862.0019347467385
+      positionAbsolute:
+        x: 3199.1344038359443
+        y: 862.0019347467385
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        author: Dify
+        desc: ''
+        height: 233
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"开始节点","type":"text","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"：","type":"text","version":1}],"direction":"ltr","format":"start","indent":0,"type":"listitem","version":1,"value":2},{"children":[{"children":[{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"功能","type":"text","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"：收集用户输入的关键字、标题、受众、需要避免的词/品牌、语气等信息。","type":"text","version":1}],"direction":"ltr","format":"","indent":1,"type":"listitem","version":1,"value":1},{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"变量","type":"text","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"：","type":"text","version":1}],"direction":"ltr","format":"","indent":1,"type":"listitem","version":1,"value":2},{"children":[{"children":[{"children":[{"detail":0,"format":16,"mode":"normal","style":"","text":"keyword","type":"text","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"：关键字","type":"text","version":1}],"direction":"ltr","format":"","indent":2,"type":"listitem","version":1,"value":1},{"children":[{"detail":0,"format":16,"mode":"normal","style":"","text":"title","type":"text","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"：标题","type":"text","version":1}],"direction":"ltr","format":"","indent":2,"type":"listitem","version":1,"value":2},{"children":[{"detail":0,"format":16,"mode":"normal","style":"","text":"audience","type":"text","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"：受众","type":"text","version":1}],"direction":"ltr","format":"","indent":2,"type":"listitem","version":1,"value":3},{"children":[{"detail":0,"format":16,"mode":"normal","style":"","text":"brands_to_avoid","type":"text","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"：需要避免的词/品牌","type":"text","version":1}],"direction":"ltr","format":"","indent":2,"type":"listitem","version":1,"value":4},{"children":[{"detail":0,"format":16,"mode":"normal","style":"","text":"tone","type":"text","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"：语气","type":"text","version":1}],"direction":"ltr","format":"","indent":2,"type":"listitem","version":1,"value":5}],"direction":"ltr","format":"","indent":0,"type":"list","version":1,"listType":"bullet","start":1,"tag":"ul"}],"direction":"ltr","format":"","indent":1,"type":"listitem","version":1,"value":3}],"direction":"ltr","format":"","indent":0,"type":"list","version":1,"listType":"bullet","start":1,"tag":"ul"}],"direction":"ltr","format":"start","indent":0,"type":"listitem","version":1,"value":3}],"direction":"ltr","format":"","indent":0,"type":"list","version":1,"listType":"number","start":2,"tag":"ol"}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 403
+      height: 233
+      id: '1718994763067'
+      position:
+        x: -31.050901118101535
+        y: 95.36766163370669
+      positionAbsolute:
+        x: -31.050901118101535
+        y: 95.36766163370669
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 403
+    - data:
+        author: Dify
+        desc: ''
+        height: 145
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"条件分支节点","type":"text","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"：","type":"text","version":1}],"direction":"ltr","format":"start","indent":0,"type":"listitem","version":1,"value":2},{"children":[{"children":[{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"功能","type":"text","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"：检查标题是否为空。","type":"text","version":1}],"direction":"ltr","format":"","indent":1,"type":"listitem","version":1,"value":1},{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"条件","type":"text","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"：如果标题为空，执行生成标题操作；否则，继续后续操作。","type":"text","version":1}],"direction":"ltr","format":"","indent":1,"type":"listitem","version":1,"value":2}],"direction":"ltr","format":"","indent":0,"type":"list","version":1,"listType":"bullet","start":1,"tag":"ul"}],"direction":"ltr","format":"start","indent":0,"type":"listitem","version":1,"value":3}],"direction":"ltr","format":"","indent":0,"type":"list","version":1,"listType":"number","start":2,"tag":"ol"}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 329
+      height: 145
+      id: '1718994788823'
+      position:
+        x: 398.5193843934612
+        y: 543.2129873779551
+      positionAbsolute:
+        x: 398.5193843934612
+        y: 543.2129873779551
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 329
+    - data:
+        author: Dify
+        desc: ''
+        height: 129
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"谷歌搜索节点需要前往
+          ","type":"text","version":1},{"detail":0,"format":1,"mode":"normal","style":"","text":"Serp
+          ","type":"text","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"配置第三方的
+          API 密钥才能使用。使用","type":"text","version":1},{"detail":0,"format":1,"mode":"normal","style":"","text":"Google搜索工具","type":"text","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"获取相关信息，可以确保生成内容准确且丰富。","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"type":"linebreak","version":1}],"direction":"ltr","format":"start","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 394
+      height: 129
+      id: '1718994800713'
+      position:
+        x: 591.31420407938
+        y: 55.64141102063536
+      positionAbsolute:
+        x: 591.31420407938
+        y: 55.64141102063536
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 394
+    - data:
+        author: Dify
+        desc: ''
+        height: 380
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":3,"mode":"normal","style":"font-size:
+          16px;","text":"具体流程","type":"text","version":1}],"direction":"ltr","format":"start","indent":0,"type":"paragraph","version":1,"textFormat":3},{"children":[{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"用户输入","type":"text","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"：","type":"text","version":1}],"direction":"ltr","format":"start","indent":0,"type":"listitem","version":1,"value":15},{"children":[{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"用户在开始节点输入关键字、标题、受众、需要避免的词/品牌、语气等信息。","type":"text","version":1}],"direction":"ltr","format":"","indent":1,"type":"listitem","version":1,"value":1}],"direction":"ltr","format":"","indent":0,"type":"list","version":1,"listType":"bullet","start":1,"tag":"ul"}],"direction":"ltr","format":"start","indent":0,"type":"listitem","version":1,"value":16},{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"条件判断","type":"text","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"：","type":"text","version":1}],"direction":"ltr","format":"start","indent":0,"type":"listitem","version":1,"value":16},{"children":[{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"检查标题是否为空，若为空则生成标题。","type":"text","version":1}],"direction":"ltr","format":"","indent":1,"type":"listitem","version":1,"value":1}],"direction":"ltr","format":"","indent":0,"type":"list","version":1,"listType":"bullet","start":1,"tag":"ul"}],"direction":"ltr","format":"start","indent":0,"type":"listitem","version":1,"value":17},{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"生成标题和关键字","type":"text","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"：","type":"text","version":1}],"direction":"ltr","format":"start","indent":0,"type":"listitem","version":1,"value":17},{"children":[{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"根据用户输入的关键字，生成SEO优化的标题和相关关键字。","type":"text","version":1}],"direction":"ltr","format":"","indent":1,"type":"listitem","version":1,"value":1}],"direction":"ltr","format":"","indent":0,"type":"list","version":1,"listType":"bullet","start":1,"tag":"ul"}],"direction":"ltr","format":"start","indent":0,"type":"listitem","version":1,"value":18},{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"Google搜索","type":"text","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"：","type":"text","version":1}],"direction":"ltr","format":"start","indent":0,"type":"listitem","version":1,"value":18},{"children":[{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"使用生成的标题和关键字进行Google搜索，获取相关信息。","type":"text","version":1}],"direction":"ltr","format":"","indent":1,"type":"listitem","version":1,"value":1}],"direction":"ltr","format":"","indent":0,"type":"list","version":1,"listType":"bullet","start":1,"tag":"ul"}],"direction":"ltr","format":"start","indent":0,"type":"listitem","version":1,"value":19},{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"生成大纲和文章","type":"text","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"：","type":"text","version":1}],"direction":"ltr","format":"start","indent":0,"type":"listitem","version":1,"value":19},{"children":[{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"根据用户输入的信息和搜索结果，生成文章大纲、开头和主体。","type":"text","version":1}],"direction":"ltr","format":"","indent":1,"type":"listitem","version":1,"value":1}],"direction":"ltr","format":"","indent":0,"type":"list","version":1,"listType":"bullet","start":1,"tag":"ul"}],"direction":"ltr","format":"start","indent":0,"type":"listitem","version":1,"value":20},{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"模板转换和输出","type":"text","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"：","type":"text","version":1}],"direction":"ltr","format":"start","indent":0,"type":"listitem","version":1,"value":20},{"children":[{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"将文章开头和主体合并生成完整的文章，并输出结果。","type":"text","version":1}],"direction":"ltr","format":"","indent":1,"type":"listitem","version":1,"value":1}],"direction":"ltr","format":"","indent":0,"type":"list","version":1,"listType":"bullet","start":1,"tag":"ul"}],"direction":"ltr","format":"start","indent":0,"type":"listitem","version":1,"value":21}],"direction":"ltr","format":"","indent":0,"type":"list","version":1,"listType":"number","start":15,"tag":"ol"},{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 487
+      height: 380
+      id: '1718994846479'
+      position:
+        x: 586.5765192322465
+        y: 771.1951267446896
+      positionAbsolute:
+        x: 586.5765192322465
+        y: 771.1951267446896
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 487
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: user query in the format of string
+            ja_JP: user query in the format of string
+            pt_BR: user query in the format of string
+            zh_Hans: user query in the format of string
+          label:
+            en_US: query
+            ja_JP: query
+            pt_BR: query
+            zh_Hans: query
+          llm_description: user query in the format of string
+          max: null
+          min: null
+          name: query
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: number of search results
+            ja_JP: number of search results
+            pt_BR: number of search results
+            zh_Hans: number of search results
+          label:
+            en_US: count
+            ja_JP: count
+            pt_BR: count
+            zh_Hans: count
+          llm_description: number of search results
+          max: null
+          min: null
+          name: count
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: HTTP request context containing headers
+            ja_JP: HTTP request context containing headers
+            pt_BR: HTTP request context containing headers
+            zh_Hans: HTTP request context containing headers
+          label:
+            en_US: ctx
+            ja_JP: ctx
+            pt_BR: ctx
+            zh_Hans: ctx
+          llm_description: HTTP request context containing headers
+          max: null
+          min: null
+          name: ctx
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          count: ''
+          ctx: ''
+          query: ''
+        provider_id: ali
+        provider_name: ali
+        provider_type: mcp
+        selected: false
+        title: bailian_web_search
+        tool_configurations: {}
+        tool_description: 搜索可用于查询百科知识、时事新闻、天气等信息
+        tool_label: bailian_web_search
+        tool_name: bailian_web_search
+        tool_node_version: '2'
+        tool_parameters:
+          count:
+            type: constant
+            value: null
+          ctx:
+            type: mixed
+            value: ''
+          query:
+            type: mixed
+            value: '{{#1711529368293.title#}}{{#1711529368293.keyword#}} 面向{{#1711529368293.audience#}}，避免{{#1711529368293.brands_to_avoid#}}，语气是{{#1711529368293.tone#}}
+
+              '
+        type: tool
+      height: 83
+      id: '1761617281849'
+      position:
+        x: 676.8623281111019
+        y: 250.72176080223926
+      positionAbsolute:
+        x: 676.8623281111019
+        y: 250.72176080223926
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: user query in the format of string
+            ja_JP: user query in the format of string
+            pt_BR: user query in the format of string
+            zh_Hans: user query in the format of string
+          label:
+            en_US: query
+            ja_JP: query
+            pt_BR: query
+            zh_Hans: query
+          llm_description: user query in the format of string
+          max: null
+          min: null
+          name: query
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: number of search results
+            ja_JP: number of search results
+            pt_BR: number of search results
+            zh_Hans: number of search results
+          label:
+            en_US: count
+            ja_JP: count
+            pt_BR: count
+            zh_Hans: count
+          llm_description: number of search results
+          max: null
+          min: null
+          name: count
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: HTTP request context containing headers
+            ja_JP: HTTP request context containing headers
+            pt_BR: HTTP request context containing headers
+            zh_Hans: HTTP request context containing headers
+          label:
+            en_US: ctx
+            ja_JP: ctx
+            pt_BR: ctx
+            zh_Hans: ctx
+          llm_description: HTTP request context containing headers
+          max: null
+          min: null
+          name: ctx
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          count: ''
+          ctx: ''
+          query: ''
+        provider_id: ali
+        provider_name: ali
+        provider_type: mcp
+        selected: false
+        title: bailian_web_search (1)
+        tool_configurations: {}
+        tool_description: 搜索可用于查询百科知识、时事新闻、天气等信息
+        tool_label: bailian_web_search
+        tool_name: bailian_web_search
+        tool_node_version: '2'
+        tool_parameters:
+          count:
+            type: constant
+            value: null
+          ctx:
+            type: mixed
+            value: ''
+          query:
+            type: mixed
+            value: '{{#17616225641710.result#}}'
+        type: tool
+      height: 83
+      id: '17616176798700'
+      position:
+        x: 2249.624799978394
+        y: 430.7220647833832
+      positionAbsolute:
+        x: 2249.624799978394
+        y: 430.7220647833832
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "import re\n\ndef main(text: str):\n    # 删除 <think>...</think> 内容\n\
+          \    result = re.sub(r\"<think>.*?</think>\", \"\", text, flags=re.DOTALL)\n\
+          \    # 去除首尾空白符\n    result = result.strip()\n    return {\"result\": result}\n"
+        code_language: python3
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行
+        type: code
+        variables:
+        - value_selector:
+          - '1711540113584'
+          - text
+          value_type: string
+          variable: text
+      height: 51
+      id: '1761622000083'
+      position:
+        x: 1219.359116027885
+        y: 284.4335253563951
+      positionAbsolute:
+        x: 1219.359116027885
+        y: 284.4335253563951
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "import re\n\ndef main(text: str):\n    # 删除 <think>...</think> 内容\n\
+          \    result = re.sub(r\"<think>.*?</think>\", \"\", text, flags=re.DOTALL)\n\
+          \    # 去除首尾空白符\n    result = result.strip()\n    return {\"result\": result}\n"
+        code_language: python3
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行 (1)
+        type: code
+        variables:
+        - value_selector:
+          - '1711540331682'
+          - text
+          value_type: string
+          variable: text
+      height: 51
+      id: '17616225641710'
+      position:
+        x: 1912.0340428320667
+        y: 430.7220647833832
+      positionAbsolute:
+        x: 1912.0340428320667
+        y: 430.7220647833832
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "import re\n\ndef main(text: str):\n    # 删除 <think>...</think> 内容\n\
+          \    result = re.sub(r\"<think>.*?</think>\", \"\", text, flags=re.DOTALL)\n\
+          \    # 去除首尾空白符\n    result = result.strip()\n    return {\"result\": result}\n"
+        code_language: python3
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 大纲内容提取
+        type: code
+        variables:
+        - value_selector:
+          - '1711540755626'
+          - text
+          value_type: string
+          variable: text
+      height: 51
+      id: '17616237456870'
+      position:
+        x: 1647.6523409301954
+        y: 670.9153125790242
+      positionAbsolute:
+        x: 1647.6523409301954
+        y: 670.9153125790242
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "import re\n\ndef main(text: str):\n    # 删除 <think>...</think> 内容\n\
+          \    result = re.sub(r\"<think>.*?</think>\", \"\", text, flags=re.DOTALL)\n\
+          \    # 去除首尾空白符\n    result = result.strip()\n    return {\"result\": result}\n"
+        code_language: python3
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行 (3)
+        type: code
+        variables:
+        - value_selector:
+          - '1711541242630'
+          - text
+          value_type: string
+          variable: text
+      height: 51
+      id: '17616237902230'
+      position:
+        x: 1647.6523409301954
+        y: 862.0019347467385
+      positionAbsolute:
+        x: 1647.6523409301954
+        y: 862.0019347467385
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "import re\n\ndef main(text: str):\n    # 删除 <think>...</think> 内容\n\
+          \    result = re.sub(r\"<think>.*?</think>\", \"\", text, flags=re.DOTALL)\n\
+          \    # 去除首尾空白符\n    result = result.strip()\n    return {\"result\": result}\n"
+        code_language: python3
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行 (4)
+        type: code
+        variables:
+        - value_selector:
+          - '1711541250877'
+          - text
+          value_type: string
+          variable: text
+      height: 51
+      id: '17616240581420'
+      position:
+        x: 2465.949808625893
+        y: 862.0019347467385
+      positionAbsolute:
+        x: 2465.949808625893
+        y: 862.0019347467385
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "import re\n\ndef main(text: str):\n    # 删除 <think>...</think> 内容\n\
+          \    result = re.sub(r\"<think>.*?</think>\", \"\", text, flags=re.DOTALL)\n\
+          \    # 去除首尾空白符\n    result = result.strip()\n    return {\"result\": result}\n"
+        code_language: python3
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行 (1)
+        type: code
+        variables:
+        - value_selector:
+          - '1711540280162'
+          - text
+          value_type: string
+          variable: text
+      height: 51
+      id: '17616312147830'
+      position:
+        x: 1071.9801022719716
+        y: 492.2986307758483
+      positionAbsolute:
+        x: 1071.9801022719716
+        y: 492.2986307758483
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    viewport:
+      x: -926.8128797142881
+      y: -107.11730200196303
+      zoom: 0.5263570222357051
+  rag_pipeline_variables: []

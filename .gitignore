@@ -1,0 +1,45 @@
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+.credentials*
+credentials.json
+
+# Python environments and generated files
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+build/
+dist/
+
+# Notebook and editor state
+.ipynb_checkpoints/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+
+# Frontend dependencies and local output
+node_modules/
+*.log
+output_*.txt
+untitled.txt
+
+# MCP state stays on the local machine
+.deleted_files/
+.snapshots/
+secure_rename_history.json
+secure_rename_history.lock

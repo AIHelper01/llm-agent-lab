@@ -1,0 +1,303 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: agent-chat
+  name: GitHub项目发现助手：DevSpotter
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/siliconflow:0.0.33@6792acf632f24f1c41a3192a78ef181f7149811a8dfd9a16ade984978613f79c
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/github:0.2.8@0ab60b34f2ef10fc8e5c5b8e4061bb9da15675fab0083edf50d9cc7d57aeefd4
+    version: null
+kind: app
+model_config:
+  agent_mode:
+    enabled: true
+    max_iteration: 10
+    prompt: null
+    strategy: function_call
+    tools:
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: langgenius/github/github
+      provider_name: langgenius/github/github
+      provider_type: builtin
+      tool_label: 仓库搜索
+      tool_name: github_repositories
+      tool_parameters:
+        query: ''
+        top_n: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: langgenius/github/github
+      provider_name: langgenius/github/github
+      provider_type: builtin
+      tool_label: 获取README内容
+      tool_name: github_repository_readme
+      tool_parameters:
+        dir: ''
+        owner: ''
+        ref: ''
+        repo: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: langgenius/github/github
+      provider_name: langgenius/github/github
+      provider_type: builtin
+      tool_label: 仓库信息
+      tool_name: github_repository_info
+      tool_parameters:
+        owner: ''
+        repo: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: langgenius/github/github
+      provider_name: langgenius/github/github
+      provider_type: builtin
+      tool_label: 仓库Issues
+      tool_name: github_repository_issues
+      tool_parameters:
+        direction: ''
+        owner: ''
+        per_page: ''
+        repo: ''
+        sort: ''
+        state: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: langgenius/github/github
+      provider_name: langgenius/github/github
+      provider_type: builtin
+      tool_label: 仓库Pull Requests
+      tool_name: github_repository_pulls
+      tool_parameters:
+        direction: ''
+        owner: ''
+        per_page: ''
+        repo: ''
+        sort: ''
+        state: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: langgenius/github/github
+      provider_name: langgenius/github/github
+      provider_type: builtin
+      tool_label: 仓库发布版本
+      tool_name: github_repository_releases
+      tool_parameters:
+        owner: ''
+        per_page: ''
+        repo: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: langgenius/github/github
+      provider_name: langgenius/github/github
+      provider_type: builtin
+      tool_label: 仓库贡献者
+      tool_name: github_repository_contributors
+      tool_parameters:
+        owner: ''
+        per_page: ''
+        repo: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: langgenius/github/github
+      provider_name: langgenius/github/github
+      provider_type: builtin
+      tool_label: 仓库提交记录
+      tool_name: github_repository_commits
+      tool_parameters:
+        owner: ''
+        path: ''
+        per_page: ''
+        repo: ''
+        sha: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: langgenius/github/github
+      provider_name: langgenius/github/github
+      provider_type: builtin
+      tool_label: 仓库内容
+      tool_name: github_repository_contents
+      tool_parameters:
+        owner: ''
+        path: ''
+        ref: ''
+        repo: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: langgenius/github/github
+      provider_name: langgenius/github/github
+      provider_type: builtin
+      tool_label: 用户信息
+      tool_name: github_user_info
+      tool_parameters:
+        username: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: langgenius/github/github
+      provider_name: langgenius/github/github
+      provider_type: builtin
+      tool_label: 用户仓库
+      tool_name: github_user_repos
+      tool_parameters:
+        direction: ''
+        per_page: ''
+        sort: ''
+        type: ''
+        username: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: langgenius/github/github
+      provider_name: langgenius/github/github
+      provider_type: builtin
+      tool_label: 搜索代码
+      tool_name: github_search_code
+      tool_parameters:
+        order: ''
+        per_page: ''
+        query: ''
+        sort: ''
+  annotation_reply:
+    enabled: false
+  chat_prompt_config: {}
+  completion_prompt_config: {}
+  dataset_configs:
+    datasets:
+      datasets: []
+    retrieval_model: multiple
+    top_k: 4
+  dataset_query_variable: ''
+  external_data_tools: []
+  file_upload:
+    allowed_file_extensions:
+    - .JPG
+    - .JPEG
+    - .PNG
+    - .GIF
+    - .WEBP
+    - .SVG
+    - .MP4
+    - .MOV
+    - .MPEG
+    - .WEBM
+    allowed_file_types: []
+    allowed_file_upload_methods:
+    - remote_url
+    - local_file
+    enabled: false
+    image:
+      detail: high
+      enabled: false
+      number_limits: 3
+      transfer_methods:
+      - remote_url
+      - local_file
+    number_limits: 3
+  model:
+    completion_params:
+      stop: []
+    mode: chat
+    name: Qwen/Qwen3-8B
+    provider: langgenius/siliconflow/siliconflow
+  more_like_this:
+    enabled: false
+  opening_statement: '| 项目名称       | 简介                         | 语言   | 星标数 | 更新时间       |
+    项目链接         |
+
+    |----------------|------------------------------|--------|--------|----------------|------------------|
+
+    | Scikit-learn   | 机器学习和数据挖掘工具       | Python | 10000  | 2023-04-05     | https://github.com/scikit-learn/scikit-learn
+    |
+
+    | TensorFlow     | 开源机器学习框架              | Python | 80000  | 2023-05-10     |
+    https://github.com/tensorflow/tensorflow     |
+
+    | PyTorch         | 用于深度学习的开源框架       | Python | 70000  | 2023-06-02     | https://github.com/pytorch/pytorch           |'
+  pre_prompt: '```xml
+
+    <instruction>
+
+    请根据提供的主题，搜索 GitHub 上相关的优秀开源项目，并将它们整理成一张清晰的表格。表格应包含项目名称、简介、语言、星标数、更新时间、项目链接等基本信息。整理过程中，请确保信息准确，并按照项目的活跃度与受欢迎程度对结果进行排序。最终输出应为标准的
+    Markdown 格式，且不含任何 XML 标签。
+
+    </instruction>
+
+
+    <input>
+
+    <topic> {{topic}} </topic>
+
+    </input>
+
+
+    <output>
+
+    请以 Markdown 格式输出一个表格，表格应包含以下列：项目名称、简介、语言、星标数、更新时间、项目链接。确保表格内容整洁、格式规范。
+
+    </output>
+
+
+    <example>
+
+    如果输入主题为 "机器学习"，则应输出类似以下的 Markdown 表格：
+
+
+    | 项目名称       | 简介                         | 语言   | 星标数 | 更新时间       | 项目链接         |
+
+    |----------------|------------------------------|--------|--------|----------------|------------------|
+
+    | Scikit-learn   | 机器学习和数据挖掘工具       | Python | 10000  | 2023-04-05     | https://github.com/scikit-learn/scikit-learn
+    |
+
+    | TensorFlow     | 开源机器学习框架              | Python | 80000  | 2023-05-10     |
+    https://github.com/tensorflow/tensorflow     |
+
+    | PyTorch         | 用于深度学习的开源框架       | Python | 70000  | 2023-06-02     | https://github.com/pytorch/pytorch           |
+
+    </example>
+
+    ```'
+  prompt_type: simple
+  retriever_resource:
+    enabled: true
+  sensitive_word_avoidance:
+    configs: []
+    enabled: false
+    type: ''
+  speech_to_text:
+    enabled: false
+  suggested_questions: []
+  suggested_questions_after_answer:
+    enabled: false
+  text_to_speech:
+    enabled: false
+    language: ''
+    voice: ''
+  user_input_form:
+  - text-input:
+      default: ''
+      label: topic
+      max_length: 48
+      required: true
+      variable: topic
+version: 0.4.0

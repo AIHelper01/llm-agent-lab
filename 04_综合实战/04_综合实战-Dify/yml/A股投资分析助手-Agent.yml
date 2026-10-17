@@ -1,0 +1,982 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: agent-chat
+  name: A股投资分析助手-Agent
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: package
+  value:
+    plugin_unique_identifier: yangyaofei/vllm:0.1.5@3eecf807d9767f40eb757ff70720291aa6055e9e1803893b4c93b61a5d4d4319
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: investoday/stock:2.1.0@7e77059d37d936859be1b10e570e7c030311661d8e891a8786fb30f198eaa7a9
+    version: null
+kind: app
+model_config:
+  agent_mode:
+    enabled: true
+    max_iteration: 10
+    prompt: null
+    strategy: function_call
+    tools:
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: time
+      provider_name: time
+      provider_type: builtin
+      tool_label: 星期几计算器
+      tool_name: weekday
+      tool_parameters:
+        day: ''
+        month: ''
+        year: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: time
+      provider_name: time
+      provider_type: builtin
+      tool_label: 时区转换
+      tool_name: timezone_conversion
+      tool_parameters:
+        current_time: ''
+        current_timezone: ''
+        target_timezone: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: time
+      provider_name: time
+      provider_type: builtin
+      tool_label: 时间戳转换
+      tool_name: timestamp_to_localtime
+      tool_parameters:
+        timestamp: ''
+        timezone: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: time
+      provider_name: time
+      provider_type: builtin
+      tool_label: 获取当前时间
+      tool_name: current_time
+      tool_parameters:
+        format: ''
+        timezone: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: time
+      provider_name: time
+      provider_type: builtin
+      tool_label: 获取时间戳
+      tool_name: localtime_to_timestamp
+      tool_parameters:
+        localtime: ''
+        timezone: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票所属公司的基本信息
+      tool_name: get_company_profiles
+      tool_parameters:
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票基本信息
+      tool_name: get_stock_basic_info
+      tool_parameters:
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票财务实力的最新指标
+      tool_name: get_stock_finance_financial_strength
+      tool_parameters:
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票财务实力的历史指标
+      tool_name: get_stock_finance_financial_strength_hist
+      tool_parameters:
+        stockCode: ''
+        type: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票成长能力的最新指标
+      tool_name: get_stock_finance_growth_ability
+      tool_parameters:
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票成长能力的历史指标
+      tool_name: get_stock_finance_growth_ability_hist
+      tool_parameters:
+        stockCode: ''
+        'type ': ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票财务指标的同行业对比
+      tool_name: get_stock_finance_industry_compare
+      tool_parameters:
+        'key ': ''
+        stockCode: ''
+        type: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票盈利能力的最新指标
+      tool_name: get_stock_finance_profit_ability
+      tool_parameters:
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票盈利能力的历史指标
+      tool_name: get_stock_finance_profit_ability_hist
+      tool_parameters:
+        stockCode: ''
+        'type ': ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票估值的最新指标
+      tool_name: get_stock_finance_valuation
+      tool_parameters:
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票估值的历史指标
+      tool_name: get_stock_finance_valuation_hist
+      tool_parameters:
+        stockCode: ''
+        type: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票财务实力的扩展历史指标(按季度)
+      tool_name: get_stock_financial_strength_ext_hist
+      tool_parameters:
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 融资融券标的证券日保证金比例
+      tool_name: get_stock_margin_requirement
+      tool_parameters:
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 沪深京最新实时日行情
+      tool_name: get_stock_quote_realtime
+      tool_parameters:
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 沪深京股票及关联的板块最新实时日行情
+      tool_name: get_stock_realtime_quote_merge
+      tool_parameters:
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票配股
+      tool_name: get_stock_rights_issues
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票综合得分
+      tool_name: get_stock_score
+      tool_parameters:
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 十大流通股东持股
+      tool_name: get_stock_top_10_circulating_shareh
+      tool_parameters:
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 上市公司重大事项吸收合并
+      tool_name: list_stock_absorption_mergers
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 上市公司的诉讼仲裁
+      tool_name: list_stock_arbitration_cases
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票资产负债
+      tool_name: list_stock_balance_sheet
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票大宗交易信息
+      tool_name: list_stock_block_trades
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 公司股本变动
+      tool_name: list_stock_capital_changes
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票资金流向
+      tool_name: list_stock_capital_flow
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票现金流量
+      tool_name: list_stock_cash_flows
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 公司竞争关系
+      tool_name: list_stock_company_competition
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 沪深港通持股统计
+      tool_name: list_stock_connect_holdings
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票分红派息
+      tool_name: list_stock_dividends
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 上市公司业绩快报
+      tool_name: list_stock_earnings_bulletins
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 上市公司业绩预告
+      tool_name: list_stock_earnings_guidance
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 高管及相关人员持有本公司股份变动
+      tool_name: list_stock_executive_shareholding_c
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 上市公司财务数据
+      tool_name: list_stock_financial_data
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 上市公司募集资金投向说明
+      tool_name: list_stock_fund_allocations
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票沪深港通信息
+      tool_name: list_stock_hshk_info
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票质波动率
+      tool_name: list_stock_idiosyncratic_volatility
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票利润详情
+      tool_name: list_stock_income_statements
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 机构持股统计
+      tool_name: list_stock_institutional_holdings_s
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: IPO申报状态
+      tool_name: list_stock_ipo_applications_status
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: IPO定价明细
+      tool_name: list_stock_ipo_pricing_details
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票行情流动性指标
+      tool_name: list_stock_liquidity_metrics
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 上市公司重大经营合同明细
+      tool_name: list_stock_major_contracts
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 上市公司大股东增减持情况
+      tool_name: list_stock_major_shareholder_transa
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 融资融券标的证券担保证券
+      tool_name: list_stock_margin_eligible_securiti
+      tool_parameters:
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 融资融券交易明细
+      tool_name: list_stock_margin_trade
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 融资融券交易总量
+      tool_name: list_stock_margin_trade_totals
+      tool_parameters: {}
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 个股的最新行情异动
+      tool_name: list_stock_newest_quote_abnormal
+      tool_parameters:
+        pageNum: ''
+        pageSize: ''
+        stockCodes: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票增发
+      tool_name: list_stock_offerings
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票行情表现指标
+      tool_name: list_stock_performance_metrics
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票PK择时策略优化因子
+      tool_name: list_stock_pk_timing_factors
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 上市公司的资产重组
+      tool_name: list_stock_restructuring_plans
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票股份回购
+      tool_name: list_stock_share_repurchases
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股东股权冻结
+      tool_name: list_stock_shareholder_equity_freez
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 证券特别提示
+      tool_name: list_stock_special_notices
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票行情TD信号
+      tool_name: list_stock_td_signals
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票行情技术指标
+      tool_name: list_stock_technical_indicators
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 上市公司要约收购信息
+      tool_name: list_stock_tender_offers
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票趋势指标
+      tool_name: list_stock_trend_indicators
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票未复权行情
+      tool_name: list_stock_unadjusted_quotes
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: investoday/stock/stock
+      provider_name: investoday/stock/stock
+      provider_type: builtin
+      tool_label: 股票复权行情
+      tool_name: list_stocks_adjusted_quotes
+      tool_parameters:
+        beginDate: ''
+        endDate: ''
+        pageNum: ''
+        pageSize: ''
+        stockCode: ''
+  annotation_reply:
+    enabled: false
+  chat_prompt_config: {}
+  completion_prompt_config: {}
+  dataset_configs:
+    datasets:
+      datasets: []
+    retrieval_model: multiple
+    top_k: 4
+  dataset_query_variable: ''
+  external_data_tools: []
+  file_upload:
+    allowed_file_extensions:
+    - .JPG
+    - .JPEG
+    - .PNG
+    - .GIF
+    - .WEBP
+    - .SVG
+    - .MP4
+    - .MOV
+    - .MPEG
+    - .WEBM
+    allowed_file_types: []
+    allowed_file_upload_methods:
+    - remote_url
+    - local_file
+    enabled: false
+    image:
+      detail: high
+      enabled: false
+      number_limits: 3
+      transfer_methods:
+      - remote_url
+      - local_file
+    number_limits: 3
+  model:
+    completion_params:
+      enable_thinking: true
+      stop: []
+    mode: chat
+    name: my_qwen3_8b
+    provider: yangyaofei/vllm/vllm
+  more_like_this:
+    enabled: false
+  opening_statement: 欢迎！我是您的AI股投资分析助手，致力于为您提供详尽的投资分析服务。我将为您收集并分析目标股票的实时市场数据、财务报告、行业趋势、宏观经济状况、政策变化及市场情绪等信息，并结合这些内容生成一份专业、结构化的投资分析报告，包含基本面分析、技术面分析以及具体的投资建议。我的分析旨在帮助您做出更加明智的投资决策，语言专业且客观，不会包含主观臆断或未经证实的内容。请您提供股票代码或名称，我将为您开始分析。
+  pre_prompt: "# 目的\n\n\n\n为A股股票 {{stock_ticker}} 生成一份专业、客观、结构化的《投资分析报告》。\n\n\n\n\
+    # 步骤与要求\n\n\n\n1. **数据收集与概况 (基础面)**\n   - 获取当前日期，收集给定股票 **{{stock_ticker}}** 的最新公开市场数据。\n\
+    \   - **关键数据点：** 股价、日涨跌幅、成交量、总市值、市盈率（PE-TTM）、市净率（PB）、所属行业（申万一级）、主要业务描述、控股股东及持股比例、机构持仓情况（最新公开数据）。\n\
+    \   - *要求：* 如果部分非核心数据无法精确获取，请使用“【数据待更新/查证】”占位符。\n2. **财务报表深度分析 (基本面核心)**\n   -\
+    \ 重点关注最新一期及历年（至少三年）财务数据，进行对比分析。\n   - **盈利质量：** 收入增长率、净利润率、ROE（净资产收益率）、ROA（总资产收益率）、毛利率、净利率。\n\
+    \   - **财务稳健性：** 资产负债率、现金流量净额（特别是经营活动）、短期偿债能力指标（如流动比率）。\n   - *要求：* 揭示公司的盈利趋势和财务风险点。\n\
+    3. **行业地位与竞争格局评估**\n   - 结合宏观行业数据，评估公司在所属行业中的市场地位（如市占率、排名）。\n   - 分析公司的核心竞争力（如技术壁垒、成本优势、品牌力）与行业进入壁垒。\n\
+    \   - 评估行业景气度、政策环境以及公司的潜在增长空间。\n4. **外部环境与宏观影响分析**\n   - 综合宏观经济走势、货币政策（如利率预期）、产业政策（如政府扶持、监管）和市场情绪，判断外部环境对公司业务及股价的潜在影响方向和力度。\n\
+    5. **技术走势分析 (技术面)**\n   - **价格趋势：** 分析短期、中期、长期均线（如5/20/60日）的排列状态和信号。\n   - **动量与量能：**\
+    \ 分析成交量变化、RSI、MACD等技术指标的当前信号和趋势。\n   - **关键点位：** 确定近期的主要支撑位与压力位。\n   - **联动性：**\
+    \ 简要分析股票与大盘指数（如沪深300）的相关性。\n6. **利好与风险因素识别**\n   - **利好催化剂：** 识别潜在的正面因素，如新产品发布、业绩超预期、政策扶持、技术突破。\n\
+    \   - **主要风险点：** 识别潜在的负面因素，如竞争加剧、原材料成本上升、监管收紧、宏观经济下行。\n7. **报告结构与格式要求 (输出)**\n\
+    \   - 在上述分析基础上，生成一份**专业、客观**的《投资分析报告》。\n   - **报告结构必须严格遵循以下六个一级标题：**\n     - 一、公司概况与基础数据\n\
+    \     - 二、财务分析\n     - 三、行业与竞争分析\n     - 四、技术面分析\n     - 五、潜在利好与风险\n     - 六、综合投资建议（短期与中长期视角）\n\
+    \   - **格式要求：**\n     - **必须使用Markdown格式**（包括标题、粗体、列表、表格）。\n     - 使用清晰、正式、专业的金融分析语言。\n\
+    \     - 每一部分需包含简洁的数据引用与逻辑性结论。\n     - **最终输出只包含报告内容，不含任何额外解释或指令。**\n\n\n# 样例\n\
+    \n       \n\n       ## 中国平安（股票代码：601318）A股投资分析报告\n\n       \n\n       报告日期： 2025年11月22日\n\
+    \n       分析师： Gemini AI\n\n       ------\n\n       \n\n       ### 一、公司概况与基础数据\n\
+    \n       \n\n       | **指标**            | **最新数据（假设）**                       \
+    \    | **说明**                     |\n       | ------------------- | ----------------------------------------------\
+    \ | ---------------------------- |\n       | **最新股价**        | **52.50元/股**  \
+    \                               | 截至2025年11月21日收盘价     |\n       | **日涨跌幅**  \
+    \      | +0.85%                                         | 市场情绪平稳             \
+    \    |\n       | **总市值**          | **9600亿元**                               \
+    \    | 金融行业巨头之一             |\n       | **市盈率 (PE-TTM)** | **8.5倍**          \
+    \                            | 明显低于行业平均水平（12倍） |\n       | **市净率 (PB)**     |\
+    \ **1.2倍**                                      | 估值处于历史中低位           |\n    \
+    \   | **所属行业**        | 金融/保险业                                    | 申万一级行业分类 \
+    \            |\n       | **主要业务**        | 保险（寿险、财险）、银行、资产管理             | 综合金融服务\
+    \                 |\n       | **控股股东**        | 深圳市投资控股有限公司（【占位符：数据待查】） | 股权结构分散，无绝对控股方\
+    \   |\n       | **机构持仓**        | **【占位符：数据待查】**%                      | 大型保险股，机构配置比例高\
+    \   |\n\n       公司简述：\n\n       中国平安是中国最大的综合金融服务集团之一，核心业务为寿险和财险。公司当前PE/PB估值处于相对低位，显示市场对其**【寿险改革】及【房地产风险暴露】**存在担忧，但其强大的综合金融平台和技术投入构成长期价值支撑。\n\
+    \n       ------\n\n       \n\n       ### 二、财务分析\n\n       \n\n       最新年报（2024年）显示：\n\
+    \n       | **财务指标**     | **2024年报数据（假设）** | **2023年报数据（假设）** | **财务结论**     \
+    \                                |\n       | ---------------- | ------------------------\
+    \ | ------------------------ | ------------------------------------------------\
+    \ |\n       | **收入增长率**   | **+4.5%**                | +6.2%                 \
+    \   | 收入增速放缓，主要受保费收入增速承压。           |\n       | **净利润率**     | **8.1%**      \
+    \           | 8.5%                     | 净利润率小幅下滑，投资收益波动是主因。           |\n   \
+    \    | **ROE (加权)**   | **13.5%**                | 14.8%                    |\
+    \ ROE仍保持两位数，股东回报率优于同业平均水平。    |\n       | **毛利率**       | **【不适用】**          \
+    \ | **【不适用】**           | 保险业通常考察综合成本率和综合赔付率。           |\n       | **资产负债率**\
+    \   | **84.5%**                | 84.0%                    | 金融企业特点，杠杆率保持稳定且在监管安全范围内。\
+    \ |\n       | **现金流量净额** | **+2500亿元**            | +2300亿元                | 经营性现金流充裕且持续改善，财务稳健性高。\
+    \       |\n\n       盈利质量和财务稳健性总结：\n\n       公司盈利能力**[稳定但承压]，ROE表现优异，体现了较强的资本运用效率。尽管净利润受投资端波动影响，但核心保险业务的营运利润稳定增长。充足的现金流量净额和可控的资产负债率，表明公司财务结构非常稳健**，偿付能力充足。\n\
+    \n       ------\n\n       \n\n       ### 三、行业与竞争分析\n\n       \n\n       行业景气度与宏观环境：\n\
+    \n       保险行业进入“高质量发展”阶段，增速趋缓。宏观上，货币政策保持**“稳健偏松”的基调，利好公司固定收益投资；房地产风险逐步消化，有助于[提振市场情绪]**。寿险业转型成功与否是未来景气度核心。\n\
+    \n       竞争格局与核心竞争力：\n\n       中国平安在中国寿险市场份额位居前列，与中国人寿、中国太保等形成竞争。\n\n       -\
+    \ **核心竞争力：**\n         1. **综合金融平台：** “金融+科技”战略使其在交叉销售和客户迁徙方面具有独特优势。\n       \
+    \  2. **科技赋能：** 在AI、大数据应用方面处于行业领先，有效降低了运营成本和提升了风控能力。\n         3. **寿险改革：** 代理人队伍改革成效逐步显现，有望支撑长期新业务价值（NBV）增长。\n\
+    \n       潜在增长空间：\n\n       主要集中于**[健康险/养老险]市场扩张，以及[海外业务]的稳步发展和[科技子公司]**的孵化上市。\n\
+    \n       ------\n\n       \n\n       ### 四、技术面分析\n\n       \n\n       | **技术指标**\
+    \     | **现状分析**                                                 | **结论**    \
+    \                                                 |\n       | ----------------\
+    \ | ------------------------------------------------------------ | ------------------------------------------------------------\
+    \ |\n       | **价格趋势**     | 股价处于50元-58元区间震荡，短期均线**[趋于粘合]**，中期均线构成压力。 | 股价波动性较小，处于底部**[构筑阶段]**，尚未形成清晰的中期趋势。\
+    \ |\n       | **均线系统**     | 短期均线（5/10日）在**[52.00元]**附近形成支撑。长期均线（250日）仍缓慢下行。 |\
+    \ 趋势偏空，但短期有企稳迹象。                                 |\n       | **RSI (14)**    \
+    \ | **48**，处于常态区。                                         | 尚未进入超买或超卖，价格动能平衡。\
+    \                           |\n       | **MACD**         | DIF和DEA位于零轴下方，**[红柱微缩]**。\
+    \                       | 趋势性动能偏弱，需等待放量信号。                             |\n   \
+    \    | **关键点位**     | 支撑位：**50.00元**（强心理关口），压力位：**55.00元**（中期均线密集区）。 |       \
+    \                                                       |\n       | **与大盘相关性**\
+    \ | Beta系数约为**0.8**                                          | 与沪深300指数呈正相关，但弹性略低于大盘，属**[低波动]**配置标的。\
+    \ |\n\n       ------\n\n       \n\n       ### 五、潜在利好与风险\n\n       \n\n       \n\
+    \n       #### \U0001F4C8 潜在利好因素\n\n       \n\n       1. **寿险改革成效兑现：** 新增代理人产能和新业务价值（NBV）超预期回升。\n\
+    \       2. **分红派息提升：** 稳定的现金流和盈利能力，有望进一步提高现金分红比例。\n       3. **估值修复：** 随着经济企稳和市场风险偏好提升，低PE/PB估值有望迎来修复。\n\
+    \n       \n\n       #### ⚠️ 潜在风险因素\n\n       \n\n       1. **投资端风险：** 资本市场波动加大，对保险资金投资收益率带来不确定性。\n\
+    \       2. **监管收紧：** 对金融混业经营的监管可能进一步收紧，影响其综合金融优势。\n       3. **新单保费不及预期：** 代理人渠道转型阵痛期延长，新单保费收入持续低迷。\n\
+    \n       ------\n\n       \n\n       ### 六、综合投资建议\n\n       \n\n       **综合评级：**\
+    \ **增持**\n\n       核心逻辑：\n\n       中国平安作为保险龙头，基本面扎实，估值处于历史低位。尽管短期面临寿险改革阵痛和投资收益压力，但其“综合金融+科技”的核心竞争力未受动摇。风险已充分定价，安全边际高。\n\
+    \n       | **视角**                | **投资建议**      | **逻辑支持**                  \
+    \                               |\n       | ----------------------- | -----------------\
+    \ | ------------------------------------------------------------ |\n       | **短期（1-3个月）**\
+    \     | **区间观望/低吸** | 股价处于震荡筑底阶段，技术面缺乏突破信号。建议在50.00元附近支撑位考虑小幅低吸。 |\n       | **中长期（6个月以上）**\
+    \ | **核心配置/持有** | 看好公司长期战略转型和强大的内含价值增长潜力。作为金融板块的低估值、高ROE标的，适合中长期价值投资者配置。 |\n\n\
+    \       **风险提示：** 投资有风险，入市需谨慎。本报告结论基于公开信息与假设分析，不构成任何投资操作建议。"
+  prompt_type: simple
+  retriever_resource:
+    enabled: true
+  sensitive_word_avoidance:
+    configs: []
+    enabled: false
+    type: ''
+  speech_to_text:
+    enabled: false
+  suggested_questions: []
+  suggested_questions_after_answer:
+    enabled: false
+  text_to_speech:
+    enabled: false
+    language: ''
+    voice: ''
+  user_input_form:
+  - text-input:
+      default: ''
+      label: stock_ticker
+      required: true
+      variable: stock_ticker
+version: 0.4.0

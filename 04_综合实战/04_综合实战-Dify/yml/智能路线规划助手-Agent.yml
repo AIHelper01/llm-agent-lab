@@ -1,0 +1,337 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: agent-chat
+  name: 智能路线规划助手-Agent
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/siliconflow:0.0.33@6792acf632f24f1c41a3192a78ef181f7149811a8dfd9a16ade984978613f79c
+    version: null
+kind: app
+model_config:
+  agent_mode:
+    enabled: true
+    max_iteration: 10
+    prompt: null
+    strategy: function_call
+    tools:
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: modelscope-amap
+      provider_name: modelscope-amap
+      provider_type: mcp
+      tool_label: maps_regeocode
+      tool_name: maps_regeocode
+      tool_parameters:
+        location: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: modelscope-amap
+      provider_name: modelscope-amap
+      provider_type: mcp
+      tool_label: maps_geo
+      tool_name: maps_geo
+      tool_parameters:
+        address: ''
+        city: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: modelscope-amap
+      provider_name: modelscope-amap
+      provider_type: mcp
+      tool_label: maps_ip_location
+      tool_name: maps_ip_location
+      tool_parameters:
+        ip: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: modelscope-amap
+      provider_name: modelscope-amap
+      provider_type: mcp
+      tool_label: maps_weather
+      tool_name: maps_weather
+      tool_parameters:
+        city: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: modelscope-amap
+      provider_name: modelscope-amap
+      provider_type: mcp
+      tool_label: maps_search_detail
+      tool_name: maps_search_detail
+      tool_parameters:
+        id: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: modelscope-amap
+      provider_name: modelscope-amap
+      provider_type: mcp
+      tool_label: maps_bicycling
+      tool_name: maps_bicycling
+      tool_parameters:
+        destination: ''
+        origin: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: modelscope-amap
+      provider_name: modelscope-amap
+      provider_type: mcp
+      tool_label: maps_direction_walking
+      tool_name: maps_direction_walking
+      tool_parameters:
+        destination: ''
+        origin: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: modelscope-amap
+      provider_name: modelscope-amap
+      provider_type: mcp
+      tool_label: maps_direction_driving
+      tool_name: maps_direction_driving
+      tool_parameters:
+        destination: ''
+        origin: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: modelscope-amap
+      provider_name: modelscope-amap
+      provider_type: mcp
+      tool_label: maps_direction_transit_integrated
+      tool_name: maps_direction_transit_integrated
+      tool_parameters:
+        city: ''
+        cityd: ''
+        destination: ''
+        origin: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: modelscope-amap
+      provider_name: modelscope-amap
+      provider_type: mcp
+      tool_label: maps_distance
+      tool_name: maps_distance
+      tool_parameters:
+        destination: ''
+        origins: ''
+        type: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: modelscope-amap
+      provider_name: modelscope-amap
+      provider_type: mcp
+      tool_label: maps_text_search
+      tool_name: maps_text_search
+      tool_parameters:
+        city: ''
+        keywords: ''
+        types: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: modelscope-amap
+      provider_name: modelscope-amap
+      provider_type: mcp
+      tool_label: maps_around_search
+      tool_name: maps_around_search
+      tool_parameters:
+        keywords: ''
+        location: ''
+        radius: ''
+  annotation_reply:
+    enabled: false
+  chat_prompt_config: {}
+  completion_prompt_config: {}
+  dataset_configs:
+    datasets:
+      datasets: []
+    retrieval_model: multiple
+    top_k: 4
+  dataset_query_variable: ''
+  external_data_tools: []
+  file_upload:
+    allowed_file_extensions:
+    - .JPG
+    - .JPEG
+    - .PNG
+    - .GIF
+    - .WEBP
+    - .SVG
+    - .MP4
+    - .MOV
+    - .MPEG
+    - .WEBM
+    allowed_file_types: []
+    allowed_file_upload_methods:
+    - remote_url
+    - local_file
+    enabled: false
+    image:
+      detail: high
+      enabled: false
+      number_limits: 3
+      transfer_methods:
+      - remote_url
+      - local_file
+    number_limits: 3
+  model:
+    completion_params:
+      stop: []
+    mode: chat
+    name: Qwen/Qwen3-8B
+    provider: langgenius/siliconflow/siliconflow
+  more_like_this:
+    enabled: false
+  opening_statement: 从市中心火车站出发，您可以乘坐地铁1号线（往北方向）直达科技园区站，全程约25分钟，无需换乘。建议提前购买地铁票或使用交通卡，以方便出行。由于您携带行李，可在科技园区站的B区出口领取行李寄存服务，便于您存放物品。祝您旅途顺利！
+  pre_prompt: '```xml
+
+    <instruction>
+
+    请根据提供的输入信息，为用户提供一条合理的线路规划。请遵循以下步骤：
+
+
+    1. 接收起点和终点信息，明确用户的目的地和出发地点。
+
+    2. 确定用户所需的交通方式（如步行、公交、地铁、驾车、骑行等）。
+
+    3. 考虑用户的偏好，如最短时间、最少换乘、最少步行距离等。
+
+    4. 分析当前的交通状况和路线可行性。
+
+    5. 生成一条或多条线路建议，每条线路应包含起始点、途径点、终点、预计时间、主要交通工具及换乘信息。
+
+    6. 提供每条线路的简要说明和注意事项，以帮助用户做出最佳选择。
+
+    7. 最终输出输出为markdown格式的。
+
+    </instruction>
+
+
+    <input>
+
+    {{start_location}}：用户出发的地点名称。
+
+    {{end_location}}：用户希望到达的地点名称。
+
+    {{transport_mode}}：用户偏好的交通方式，如 "步行"、"公交"、"地铁"、"驾车"、"骑行"。
+
+    {{preferences}}：用户附加的偏好，如 "最短时间"、"最少换乘"。
+
+    {{additional_info}}：用户可能提供的额外信息，如出发时间、是否携带行李、是否需要换乘提示等。
+
+    </input>
+
+
+    <output>
+
+    为用户提供清晰、简洁的线路规划建议，包括：
+
+    - 起点和终点名称
+
+    - 推荐的路线路径
+
+    - 预计所需时间
+
+    - 主要交通工具及换乘信息
+
+    - 注意事项或建议
+
+    请确保输出为纯文本格式，不包含任何XML标签或格式。
+
+    </output>
+
+
+    <example>
+
+    输入：
+
+    {{start_location}} = "市中心火车站"
+
+    {{end_location}} = "科技园区"
+
+    {{transport_mode}} = "地铁"
+
+    {{preferences}} = "最少换乘"
+
+    {{additional_info}} = "上午10点出发，携带行李"
+
+
+    输出：
+
+
+    | 出发地 | 目的地 | 交通方式 | 路线详情 | 注意事项|
+
+    |------|------|------|------|------|
+
+    | {{start_location}} | {{end_location}} | {{transport_mode}}  | {{route_details}}
+    | {{pay_attention}} |
+
+    </example>
+
+    ```'
+  prompt_type: simple
+  retriever_resource:
+    enabled: true
+  sensitive_word_avoidance:
+    configs: []
+    enabled: false
+    type: ''
+  speech_to_text:
+    enabled: false
+  suggested_questions: []
+  suggested_questions_after_answer:
+    enabled: false
+  text_to_speech:
+    enabled: false
+    language: ''
+    voice: ''
+  user_input_form:
+  - text-input:
+      default: ''
+      label: start_location
+      required: true
+      variable: start_location
+  - text-input:
+      default: ''
+      label: end_location
+      required: true
+      variable: end_location
+  - select:
+      default: ''
+      label: transport_mode
+      options:
+      - transit
+      - bicycling
+      - driving
+      - walking
+      required: true
+      variable: transport_mode
+  - select:
+      default: ''
+      label: preferences
+      options:
+      - 最短时间
+      - 最少换乘
+      required: false
+      variable: preferences
+  - text-input:
+      default: ''
+      label: additional_info
+      max_length: 48
+      required: false
+      variable: additional_info
+version: 0.4.0

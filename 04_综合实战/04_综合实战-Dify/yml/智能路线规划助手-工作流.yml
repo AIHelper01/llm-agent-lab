@@ -1,0 +1,1493 @@
+app:
+  description: 路线规划工作流
+  icon: 🗺️
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: 智能路线规划助手-工作流
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: bowenliang123/md_exporter:1.2.0@0c7d5cf03d0a2337bc2580889105707ea7de8835fc13e5232ff586a46cc4e7f9
+    version: null
+kind: app
+version: 0.4.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: agent
+      id: 1761211175871-source-1761211189968-target
+      selected: false
+      source: '1761211175871'
+      sourceHandle: source
+      target: '1761211189968'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: agent
+        targetType: if-else
+      id: 1761211189968-source-1761219571890-target
+      source: '1761211189968'
+      sourceHandle: source
+      target: '1761219571890'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: 1761219571890-true-1761229795502-target
+      source: '1761219571890'
+      sourceHandle: 'true'
+      target: '1761229795502'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: 1761219571890-521d7672-00fd-47e9-8371-e65dcc577b75-1761230412386-target
+      source: '1761219571890'
+      sourceHandle: 521d7672-00fd-47e9-8371-e65dcc577b75
+      target: '1761230412386'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: 1761219571890-3b4ce157-5b9d-4737-85e4-ee6cb6e9070a-1761230216879-target
+      source: '1761219571890'
+      sourceHandle: 3b4ce157-5b9d-4737-85e4-ee6cb6e9070a
+      target: '1761230216879'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: 1761219571890-false-1761230327120-target
+      source: '1761219571890'
+      sourceHandle: 'false'
+      target: '1761230327120'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: end
+      id: 1761229795502-source-1761230679289-target
+      source: '1761229795502'
+      sourceHandle: source
+      target: '1761230679289'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: end
+      id: 1761230412386-source-1761230704645-target
+      source: '1761230412386'
+      sourceHandle: source
+      target: '1761230704645'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: end
+      id: 1761230216879-source-1761230734902-target
+      source: '1761230216879'
+      sourceHandle: source
+      target: '1761230734902'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: end
+      id: 1761230327120-source-1761230757991-target
+      source: '1761230327120'
+      sourceHandle: source
+      target: '1761230757991'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - default: ''
+          hint: 例如：北京站、天安门广场
+          label: 起点位置
+          max_length: 48
+          options: []
+          placeholder: 请输入起点位置
+          required: true
+          type: text-input
+          variable: start_location
+        - default: ''
+          hint: 例如：人民广场、北京西站
+          label: 终点位置
+          max_length: 48
+          options: []
+          placeholder: 请输入终点位置
+          required: true
+          type: text-input
+          variable: end_location
+        - default: driving
+          hint: 选择交通方式
+          label: 交通方式
+          max_length: 20
+          options:
+          - driving
+          - walking
+          - transit
+          - bicycling
+          placeholder: 选择交通方式
+          required: true
+          type: select
+          variable: transport_mode
+        - default: DOCX
+          hint: ''
+          label: 报告类型
+          max_length: 48
+          options:
+          - DOCX
+          - XLSX
+          - PDF
+          - JSON
+          placeholder: ''
+          required: true
+          type: select
+          variable: report_type
+        - default: ''
+          hint: ''
+          label: 线路偏好
+          max_length: 48
+          options:
+          - 最短时间
+          - 最少换乘
+          placeholder: ''
+          required: false
+          type: select
+          variable: preferences
+      height: 190
+      id: '1761211175871'
+      position:
+        x: 68.20584626167124
+        y: 256.9374233060513
+      positionAbsolute:
+        x: 68.20584626167124
+        y: 256.9374233060513
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        agent_parameters:
+          instruction:
+            type: constant
+            value: '```xml
+
+              <instruction>
+
+              请根据提供的输入信息，为用户提供一条合理的线路规划。请遵循以下步骤：
+
+
+              1. 接收起点和终点信息，明确用户的目的地和出发地点。
+
+              2. 确定用户所需的交通方式（如步行、公交、地铁、驾车、骑行等）。
+
+              3. 考虑用户的偏好，如最短时间、最少换乘、最少步行距离等。
+
+              4. 分析当前的交通状况和路线可行性。
+
+              5. 生成一条或多条线路建议，每条线路应包含起始点、途径点、终点、预计时间、主要交通工具及换乘信息。
+
+              6. 提供每条线路的简要说明和注意事项，以帮助用户做出最佳选择。
+
+              7. 最终输出输出为markdown格式的。
+
+              </instruction>
+
+
+              <input>
+
+              {{start_location}}：用户出发的地点名称。
+
+              {{end_location}}：用户希望到达的地点名称。
+
+              {{transport_mode}}：用户偏好的交通方式，如 "步行"、"公交"、"地铁"、"驾车"、"骑行"。
+
+              {{preferences}}：用户附加的偏好，如 "最短时间"、"最少换乘"。
+
+              {{additional_info}}：用户可能提供的额外信息，如出发时间、是否携带行李、是否需要换乘提示等。
+
+              </input>
+
+
+              <output>
+
+              为用户提供清晰、简洁的线路规划建议，包括：
+
+              - 起点和终点名称
+
+              - 推荐的路线路径
+
+              - 预计所需时间
+
+              - 主要交通工具及换乘信息
+
+              - 注意事项或建议
+
+              请确保输出为纯文本格式，不包含任何XML标签或格式。
+
+              </output>
+
+
+              <example>
+
+              输入：
+
+              {{start_location}} = "市中心火车站"
+
+              {{end_location}} = "科技园区"
+
+              {{transport_mode}} = "transit"
+
+              {{preferences}} = "最少换乘"
+
+              {{additional_info}} = "上午10点出发，携带行李"
+
+
+              输出：
+
+
+              | 出发地 | 目的地 | 交通方式 | 路线详情 | 注意事项|
+
+              |------|------|------|------|------|
+
+              | {{start_location}} | {{end_location}} | {{transport_mode}}  | {{route_details}}
+              | {{pay_attention}} |
+
+              </example>
+
+              ```'
+          model:
+            type: constant
+            value:
+              completion_params:
+                enable_thinking: true
+              mode: chat
+              model: Qwen/Qwen3-8B
+              model_type: llm
+              provider: langgenius/siliconflow/siliconflow
+              type: model-selector
+          query:
+            type: constant
+            value: '{{#1761211175871.start_location#}}{{#1761211175871.end_location#}}/{{#1761211175871.transport_mode#}}'
+          tools:
+            type: constant
+            value:
+            - enabled: true
+              extra:
+                description: 将详细的结构化地址转换为经纬度坐标
+              parameters:
+                address:
+                  auto: 1
+                  value: null
+                city:
+                  auto: 1
+                  value: null
+              provider_name: modelscope-amap
+              provider_show_name: modelscope-amap
+              schemas:
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: 待解析的结构化地址信息
+                  ja_JP: 待解析的结构化地址信息
+                  pt_BR: 待解析的结构化地址信息
+                  zh_Hans: 待解析的结构化地址信息
+                label:
+                  en_US: address
+                  ja_JP: address
+                  pt_BR: address
+                  zh_Hans: address
+                llm_description: 待解析的结构化地址信息
+                max: null
+                min: null
+                name: address
+                options: []
+                placeholder: null
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: string
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: 指定查询的城市
+                  ja_JP: 指定查询的城市
+                  pt_BR: 指定查询的城市
+                  zh_Hans: 指定查询的城市
+                label:
+                  en_US: city
+                  ja_JP: city
+                  pt_BR: city
+                  zh_Hans: city
+                llm_description: 指定查询的城市
+                max: null
+                min: null
+                name: city
+                options: []
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: string
+              settings: {}
+              tool_description: 将详细的结构化地址转换为经纬度坐标
+              tool_label: maps_geo
+              tool_name: maps_geo
+              type: mcp
+            - enabled: true
+              extra:
+                description: 驾车路径规划
+              parameters:
+                destination:
+                  auto: 1
+                  value: null
+                origin:
+                  auto: 1
+                  value: null
+              provider_name: modelscope-amap
+              provider_show_name: modelscope-amap
+              schemas:
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: 出发点经纬度，坐标格式为：经度，纬度
+                  ja_JP: 出发点经纬度，坐标格式为：经度，纬度
+                  pt_BR: 出发点经纬度，坐标格式为：经度，纬度
+                  zh_Hans: 出发点经纬度，坐标格式为：经度，纬度
+                label:
+                  en_US: origin
+                  ja_JP: origin
+                  pt_BR: origin
+                  zh_Hans: origin
+                llm_description: 出发点经纬度，坐标格式为：经度，纬度
+                max: null
+                min: null
+                name: origin
+                options: []
+                placeholder: null
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: string
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: 目的地经纬度，坐标格式为：经度，纬度
+                  ja_JP: 目的地经纬度，坐标格式为：经度，纬度
+                  pt_BR: 目的地经纬度，坐标格式为：经度，纬度
+                  zh_Hans: 目的地经纬度，坐标格式为：经度，纬度
+                label:
+                  en_US: destination
+                  ja_JP: destination
+                  pt_BR: destination
+                  zh_Hans: destination
+                llm_description: 目的地经纬度，坐标格式为：经度，纬度
+                max: null
+                min: null
+                name: destination
+                options: []
+                placeholder: null
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: string
+              settings: {}
+              tool_description: 驾车路径规划API
+              tool_label: maps_direction_driving
+              tool_name: maps_direction_driving
+              type: mcp
+            - enabled: true
+              extra:
+                description: 步行路径规划
+              parameters:
+                destination:
+                  auto: 1
+                  value: null
+                origin:
+                  auto: 1
+                  value: null
+              provider_name: modelscope-amap
+              provider_show_name: modelscope-amap
+              schemas: []
+              settings: {}
+              tool_description: 步行路径规划API
+              tool_label: maps_direction_walking
+              tool_name: maps_direction_walking
+              type: mcp
+            - enabled: true
+              extra:
+                description: 公交路径规划
+              parameters:
+                city:
+                  auto: 1
+                  value: null
+                cityd:
+                  auto: 1
+                  value: null
+                destination:
+                  auto: 1
+                  value: null
+                origin:
+                  auto: 1
+                  value: null
+              provider_name: modelscope-amap
+              provider_show_name: modelscope-amap
+              schemas: []
+              settings: {}
+              tool_description: 公交路径规划API
+              tool_label: maps_direction_transit_integrated
+              tool_name: maps_direction_transit_integrated
+              type: mcp
+            - enabled: true
+              extra:
+                description: 骑行路径规划
+              parameters:
+                destination:
+                  auto: 1
+                  value: null
+                origin:
+                  auto: 1
+                  value: null
+              provider_name: modelscope-amap
+              provider_show_name: modelscope-amap
+              schemas: []
+              settings: {}
+              tool_description: 骑行路径规划API
+              tool_label: maps_bicycling
+              tool_name: maps_bicycling
+              type: mcp
+            - enabled: true
+              extra:
+                description: 将一个高德经纬度坐标转换为行政区划地址信息
+              parameters:
+                location:
+                  auto: 1
+                  value: null
+              provider_name: modelscope-amap
+              provider_show_name: modelscope-amap
+              schemas:
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: 经纬度
+                  ja_JP: 经纬度
+                  pt_BR: 经纬度
+                  zh_Hans: 经纬度
+                label:
+                  en_US: location
+                  ja_JP: location
+                  pt_BR: location
+                  zh_Hans: location
+                llm_description: 经纬度
+                max: null
+                min: null
+                name: location
+                options: []
+                placeholder: null
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: string
+              settings: {}
+              tool_description: 将一个高德经纬度坐标转换为行政区划地址信息
+              tool_label: maps_regeocode
+              tool_name: maps_regeocode
+              type: mcp
+            - enabled: true
+              extra:
+                description: IP 定位根据用户输入的 IP 地址，定位 IP 的所在位置
+              parameters:
+                ip:
+                  auto: 1
+                  value: null
+              provider_name: modelscope-amap
+              provider_show_name: modelscope-amap
+              schemas:
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: IP地址
+                  ja_JP: IP地址
+                  pt_BR: IP地址
+                  zh_Hans: IP地址
+                label:
+                  en_US: ip
+                  ja_JP: ip
+                  pt_BR: ip
+                  zh_Hans: ip
+                llm_description: IP地址
+                max: null
+                min: null
+                name: ip
+                options: []
+                placeholder: null
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: string
+              settings: {}
+              tool_description: IP 定位根据用户输入的 IP 地址，定位 IP 的所在位置
+              tool_label: maps_ip_location
+              tool_name: maps_ip_location
+              type: mcp
+            - enabled: true
+              extra:
+                description: 根据城市名称或者标准adcode查询指定城市的天气
+              parameters:
+                city:
+                  auto: 1
+                  value: null
+              provider_name: modelscope-amap
+              provider_show_name: modelscope-amap
+              schemas:
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: 城市名称或者adcode
+                  ja_JP: 城市名称或者adcode
+                  pt_BR: 城市名称或者adcode
+                  zh_Hans: 城市名称或者adcode
+                label:
+                  en_US: city
+                  ja_JP: city
+                  pt_BR: city
+                  zh_Hans: city
+                llm_description: 城市名称或者adcode
+                max: null
+                min: null
+                name: city
+                options: []
+                placeholder: null
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: string
+              settings: {}
+              tool_description: 根据城市名称或者标准adcode查询指定城市的天气
+              tool_label: maps_weather
+              tool_name: maps_weather
+              type: mcp
+            - enabled: true
+              extra:
+                description: 查询关键词搜或者周边搜获取到的POI ID的详细信息
+              parameters:
+                id:
+                  auto: 1
+                  value: null
+              provider_name: modelscope-amap
+              provider_show_name: modelscope-amap
+              schemas:
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: 关键词搜或者周边搜获取到的POI ID
+                  ja_JP: 关键词搜或者周边搜获取到的POI ID
+                  pt_BR: 关键词搜或者周边搜获取到的POI ID
+                  zh_Hans: 关键词搜或者周边搜获取到的POI ID
+                label:
+                  en_US: id
+                  ja_JP: id
+                  pt_BR: id
+                  zh_Hans: id
+                llm_description: 关键词搜或者周边搜获取到的POI ID
+                max: null
+                min: null
+                name: id
+                options: []
+                placeholder: null
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: string
+              settings: {}
+              tool_description: 查询关键词搜或者周边搜获取到的POI ID的详细信息
+              tool_label: maps_search_detail
+              tool_name: maps_search_detail
+              type: mcp
+            - enabled: true
+              extra:
+                description: 距离测量 API 可以测量两个经纬度坐标之间的距离,支持驾车、步行以及球面距离测量
+              parameters:
+                destination:
+                  auto: 1
+                  value: null
+                origins:
+                  auto: 1
+                  value: null
+                type:
+                  auto: 1
+                  value: null
+              provider_name: modelscope-amap
+              provider_show_name: modelscope-amap
+              schemas:
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: 起点经度，纬度，可以传多个坐标，使用竖线隔离，比如120,30|120,31，坐标格式为：经度，纬度
+                  ja_JP: 起点经度，纬度，可以传多个坐标，使用竖线隔离，比如120,30|120,31，坐标格式为：经度，纬度
+                  pt_BR: 起点经度，纬度，可以传多个坐标，使用竖线隔离，比如120,30|120,31，坐标格式为：经度，纬度
+                  zh_Hans: 起点经度，纬度，可以传多个坐标，使用竖线隔离，比如120,30|120,31，坐标格式为：经度，纬度
+                label:
+                  en_US: origins
+                  ja_JP: origins
+                  pt_BR: origins
+                  zh_Hans: origins
+                llm_description: 起点经度，纬度，可以传多个坐标，使用竖线隔离，比如120,30|120,31，坐标格式为：经度，纬度
+                max: null
+                min: null
+                name: origins
+                options: []
+                placeholder: null
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: string
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: 终点经度，纬度，坐标格式为：经度，纬度
+                  ja_JP: 终点经度，纬度，坐标格式为：经度，纬度
+                  pt_BR: 终点经度，纬度，坐标格式为：经度，纬度
+                  zh_Hans: 终点经度，纬度，坐标格式为：经度，纬度
+                label:
+                  en_US: destination
+                  ja_JP: destination
+                  pt_BR: destination
+                  zh_Hans: destination
+                llm_description: 终点经度，纬度，坐标格式为：经度，纬度
+                max: null
+                min: null
+                name: destination
+                options: []
+                placeholder: null
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: string
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: 距离测量类型,1代表驾车距离测量，0代表直线距离测量，3步行距离测量
+                  ja_JP: 距离测量类型,1代表驾车距离测量，0代表直线距离测量，3步行距离测量
+                  pt_BR: 距离测量类型,1代表驾车距离测量，0代表直线距离测量，3步行距离测量
+                  zh_Hans: 距离测量类型,1代表驾车距离测量，0代表直线距离测量，3步行距离测量
+                label:
+                  en_US: type
+                  ja_JP: type
+                  pt_BR: type
+                  zh_Hans: type
+                llm_description: 距离测量类型,1代表驾车距离测量，0代表直线距离测量，3步行距离测量
+                max: null
+                min: null
+                name: type
+                options: []
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: string
+              settings: {}
+              tool_description: 距离测量 API 可以测量两个经纬度坐标之间的距离,支持驾车、步行以及球面距离测量
+              tool_label: maps_distance
+              tool_name: maps_distance
+              type: mcp
+            - enabled: true
+              extra:
+                description: 关键词搜，根据用户传入关键词，搜索出相关的POI
+              parameters:
+                city:
+                  auto: 1
+                  value: null
+                keywords:
+                  auto: 1
+                  value: null
+                types:
+                  auto: 1
+                  value: null
+              provider_name: modelscope-amap
+              provider_show_name: modelscope-amap
+              schemas:
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: 搜索关键词
+                  ja_JP: 搜索关键词
+                  pt_BR: 搜索关键词
+                  zh_Hans: 搜索关键词
+                label:
+                  en_US: keywords
+                  ja_JP: keywords
+                  pt_BR: keywords
+                  zh_Hans: keywords
+                llm_description: 搜索关键词
+                max: null
+                min: null
+                name: keywords
+                options: []
+                placeholder: null
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: string
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: 查询城市
+                  ja_JP: 查询城市
+                  pt_BR: 查询城市
+                  zh_Hans: 查询城市
+                label:
+                  en_US: city
+                  ja_JP: city
+                  pt_BR: city
+                  zh_Hans: city
+                llm_description: 查询城市
+                max: null
+                min: null
+                name: city
+                options: []
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: string
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: POI类型，比如加油站
+                  ja_JP: POI类型，比如加油站
+                  pt_BR: POI类型，比如加油站
+                  zh_Hans: POI类型，比如加油站
+                label:
+                  en_US: types
+                  ja_JP: types
+                  pt_BR: types
+                  zh_Hans: types
+                llm_description: POI类型，比如加油站
+                max: null
+                min: null
+                name: types
+                options: []
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: string
+              settings: {}
+              tool_description: 关键词搜，根据用户传入关键词，搜索出相关的POI
+              tool_label: maps_text_search
+              tool_name: maps_text_search
+              type: mcp
+            - enabled: true
+              extra:
+                description: 周边搜，根据用户传入关键词以及坐标location，搜索出radius半径范围的POI
+              parameters:
+                keywords:
+                  auto: 1
+                  value: null
+                location:
+                  auto: 1
+                  value: null
+                radius:
+                  auto: 1
+                  value: null
+              provider_name: modelscope-amap
+              provider_show_name: modelscope-amap
+              schemas:
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: 搜索关键词
+                  ja_JP: 搜索关键词
+                  pt_BR: 搜索关键词
+                  zh_Hans: 搜索关键词
+                label:
+                  en_US: keywords
+                  ja_JP: keywords
+                  pt_BR: keywords
+                  zh_Hans: keywords
+                llm_description: 搜索关键词
+                max: null
+                min: null
+                name: keywords
+                options: []
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: string
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: 中心点经度纬度
+                  ja_JP: 中心点经度纬度
+                  pt_BR: 中心点经度纬度
+                  zh_Hans: 中心点经度纬度
+                label:
+                  en_US: location
+                  ja_JP: location
+                  pt_BR: location
+                  zh_Hans: location
+                llm_description: 中心点经度纬度
+                max: null
+                min: null
+                name: location
+                options: []
+                placeholder: null
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: string
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: 搜索半径
+                  ja_JP: 搜索半径
+                  pt_BR: 搜索半径
+                  zh_Hans: 搜索半径
+                label:
+                  en_US: radius
+                  ja_JP: radius
+                  pt_BR: radius
+                  zh_Hans: radius
+                llm_description: 搜索半径
+                max: null
+                min: null
+                name: radius
+                options: []
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: string
+              settings: {}
+              tool_description: 周边搜，根据用户传入关键词以及坐标location，搜索出radius半径范围的POI
+              tool_label: maps_around_search
+              tool_name: maps_around_search
+              type: mcp
+        agent_strategy_label: FunctionCalling
+        agent_strategy_name: function_calling
+        agent_strategy_provider_name: langgenius/agent/agent
+        meta:
+          minimum_dify_version: 1.7.0
+          version: 0.0.2
+        output_schema: {}
+        plugin_unique_identifier: langgenius/agent:0.0.25@3507a9a417ea8d76e5de6b2803953ca891851b6b336fafe1315471782711730f
+        selected: false
+        title: 路线规划Agent
+        tool_node_version: '2'
+        type: agent
+      height: 216
+      id: '1761211189968'
+      position:
+        x: 422.72953371661174
+        y: 247.96458485070013
+      positionAbsolute:
+        x: 422.72953371661174
+        y: 247.96458485070013
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: 5166061f-f7ec-4cc4-b7fb-3a46f67eb4b0
+            value: DOCX
+            varType: string
+            variable_selector:
+            - '1761211175871'
+            - report_type
+          id: 'true'
+          logical_operator: and
+        - case_id: 521d7672-00fd-47e9-8371-e65dcc577b75
+          conditions:
+          - comparison_operator: contains
+            id: a04bd8e3-6ed5-42aa-83d5-6eb1cf69181f
+            value: XLSX
+            varType: string
+            variable_selector:
+            - '1761211175871'
+            - report_type
+          logical_operator: and
+        - case_id: 3b4ce157-5b9d-4737-85e4-ee6cb6e9070a
+          conditions:
+          - comparison_operator: contains
+            id: 811c0429-041b-40f9-b796-567d118959b6
+            value: PDF
+            varType: string
+            variable_selector:
+            - '1761211175871'
+            - report_type
+          logical_operator: and
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 218
+      id: '1761219571890'
+      position:
+        x: 776.2131047418401
+        y: 247.96458485070013
+      positionAbsolute:
+        x: 776.2131047418401
+        y: 247.96458485070013
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Markdown text
+            ja_JP: Markdown text
+            pt_BR: Markdown text
+            zh_Hans: Markdown格式文本
+          label:
+            en_US: Markdown text
+            ja_JP: Markdown text
+            pt_BR: Markdown text
+            zh_Hans: Markdown格式文本
+          llm_description: ''
+          max: null
+          min: null
+          name: md_text
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Filename of the output file
+            ja_JP: Filename of the output file
+            pt_BR: Filename of the output file
+            zh_Hans: 输出文件名
+          label:
+            en_US: Filename of the output file
+            ja_JP: Filename of the output file
+            pt_BR: Filename of the output file
+            zh_Hans: 输出文件名
+          llm_description: ''
+          max: null
+          min: null
+          name: output_filename
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          md_text: ''
+          output_filename: ''
+        provider_id: bowenliang123/md_exporter/md_exporter
+        provider_name: bowenliang123/md_exporter/md_exporter
+        provider_type: builtin
+        selected: false
+        title: Markdown转Docx文件
+        tool_configurations: {}
+        tool_description: 一个用于将Markdown转换为DOCX文件的工具
+        tool_label: Markdown转Docx文件
+        tool_name: md_to_docx
+        tool_node_version: '2'
+        tool_parameters:
+          md_text:
+            type: mixed
+            value: '{{#1761211189968.text#}}'
+          output_filename:
+            type: mixed
+            value: '{{#1761211175871.start_location#}}-{{#1761211175871.end_location#}}推荐线路'
+        type: tool
+      height: 50
+      id: '1761229795502'
+      position:
+        x: 1167.1822835830342
+        y: 134.96172645362128
+      positionAbsolute:
+        x: 1167.1822835830342
+        y: 134.96172645362128
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Markdown text
+            ja_JP: Markdown text
+            pt_BR: Markdown text
+            zh_Hans: Markdown格式文本
+          label:
+            en_US: Markdown text
+            ja_JP: Markdown text
+            pt_BR: Markdown text
+            zh_Hans: Markdown格式文本
+          llm_description: ''
+          max: null
+          min: null
+          name: md_text
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Filename of the output file
+            ja_JP: Filename of the output file
+            pt_BR: Filename of the output file
+            zh_Hans: 输出文件名
+          label:
+            en_US: Filename of the output file
+            ja_JP: Filename of the output file
+            pt_BR: Filename of the output file
+            zh_Hans: 输出文件名
+          llm_description: ''
+          max: null
+          min: null
+          name: output_filename
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          md_text: ''
+          output_filename: ''
+        provider_id: bowenliang123/md_exporter/md_exporter
+        provider_name: bowenliang123/md_exporter/md_exporter
+        provider_type: builtin
+        selected: false
+        title: Markdown转PDF文件
+        tool_configurations: {}
+        tool_description: 一个用于将Markdown转换为PDF文件的工具
+        tool_label: Markdown转PDF文件
+        tool_name: md_to_pdf
+        tool_node_version: '2'
+        tool_parameters:
+          md_text:
+            type: mixed
+            value: '{{#1761211189968.text#}}'
+          output_filename:
+            type: mixed
+            value: '{{#1761211175871.start_location#}}-{{#1761211175871.end_location#}}推荐线路'
+        type: tool
+      height: 50
+      id: '1761230216879'
+      position:
+        x: 1167.1822835830342
+        y: 444.69355245526094
+      positionAbsolute:
+        x: 1167.1822835830342
+        y: 444.69355245526094
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Markdown table text
+            ja_JP: Markdown table text
+            pt_BR: Markdown table text
+            zh_Hans: Markdown格式文本，必须为Markdown表格格式
+          label:
+            en_US: Markdown text
+            ja_JP: Markdown text
+            pt_BR: Markdown text
+            zh_Hans: Markdown格式文本
+          llm_description: ''
+          max: null
+          min: null
+          name: md_text
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Filename of the output file
+            ja_JP: Filename of the output file
+            pt_BR: Filename of the output file
+            zh_Hans: 输出文件名
+          label:
+            en_US: Filename of the output file
+            ja_JP: Filename of the output file
+            pt_BR: Filename of the output file
+            zh_Hans: 输出文件名
+          llm_description: ''
+          max: null
+          min: null
+          name: output_filename
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          md_text: ''
+          output_filename: ''
+        provider_id: bowenliang123/md_exporter/md_exporter
+        provider_name: bowenliang123/md_exporter/md_exporter
+        provider_type: builtin
+        selected: false
+        title: Markdown转JSON文件
+        tool_configurations: {}
+        tool_description: 一个用于将Markdown转换为JSON文件的工具
+        tool_label: Markdown转JSON文件
+        tool_name: md_to_json
+        tool_node_version: '2'
+        tool_parameters:
+          md_text:
+            type: mixed
+            value: '{{#1761211189968.text#}}'
+          output_filename:
+            type: mixed
+            value: '{{#1761211175871.start_location#}}-{{#1761211175871.end_location#}}推荐线路'
+        type: tool
+      height: 50
+      id: '1761230327120'
+      position:
+        x: 1167.1822835830342
+        y: 592.0055038595324
+      positionAbsolute:
+        x: 1167.1822835830342
+        y: 592.0055038595324
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Markdown table text
+            ja_JP: Markdown table text
+            pt_BR: Markdown table text
+            zh_Hans: Markdown格式文本，必须为Markdown表格格式，可包含多个表格
+          label:
+            en_US: Markdown text
+            ja_JP: Markdown text
+            pt_BR: Markdown text
+            zh_Hans: Markdown格式文本
+          llm_description: ''
+          max: null
+          min: null
+          name: md_text
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Filename of the output file
+            ja_JP: Filename of the output file
+            pt_BR: Filename of the output file
+            zh_Hans: 输出文件名
+          label:
+            en_US: Filename of the output file
+            ja_JP: Filename of the output file
+            pt_BR: Filename of the output file
+            zh_Hans: 输出文件名
+          llm_description: ''
+          max: null
+          min: null
+          name: output_filename
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          md_text: ''
+          output_filename: ''
+        provider_id: bowenliang123/md_exporter/md_exporter
+        provider_name: bowenliang123/md_exporter/md_exporter
+        provider_type: builtin
+        selected: false
+        title: Markdown转XLSX文件
+        tool_configurations: {}
+        tool_description: 一个用于将Markdown转换为XLSX文件的工具
+        tool_label: Markdown转XLSX文件
+        tool_name: md_to_xlsx
+        tool_node_version: '2'
+        tool_parameters:
+          md_text:
+            type: mixed
+            value: '{{#1761211189968.text#}}'
+          output_filename:
+            type: mixed
+            value: '{{#1761211175871.start_location#}}-{{#1761211175871.end_location#}}推荐线路'
+        type: tool
+      height: 50
+      id: '1761230412386'
+      position:
+        x: 1167.1822835830342
+        y: 285.13442868652123
+      positionAbsolute:
+        x: 1167.1822835830342
+        y: 285.13442868652123
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        outputs:
+        - value_selector:
+          - '1761229795502'
+          - files
+          value_type: array[file]
+          variable: files
+        selected: false
+        title: Answer-DOCX
+        type: end
+      height: 87
+      id: '1761230679289'
+      position:
+        x: 1468.1822835830342
+        y: 134.96172645362128
+      positionAbsolute:
+        x: 1468.1822835830342
+        y: 134.96172645362128
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        outputs:
+        - value_selector:
+          - '1761230412386'
+          - files
+          value_type: array[file]
+          variable: files
+        selected: false
+        title: Answer-XLSX
+        type: end
+      height: 87
+      id: '1761230704645'
+      position:
+        x: 1468.1822835830342
+        y: 285.13442868652123
+      positionAbsolute:
+        x: 1468.1822835830342
+        y: 285.13442868652123
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        outputs:
+        - value_selector:
+          - '1761211189968'
+          - files
+          value_type: array[file]
+          variable: files
+        selected: false
+        title: Answer-PDF
+        type: end
+      height: 87
+      id: '1761230734902'
+      position:
+        x: 1468.1822835830342
+        y: 444.69355245526094
+      positionAbsolute:
+        x: 1468.1822835830342
+        y: 444.69355245526094
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        outputs:
+        - value_selector:
+          - '1761211189968'
+          - files
+          value_type: array[file]
+          variable: files
+        selected: false
+        title: Answer-JSON
+        type: end
+      height: 87
+      id: '1761230757991'
+      position:
+        x: 1468.1822835830342
+        y: 592.0055038595324
+      positionAbsolute:
+        x: 1468.1822835830342
+        y: 592.0055038595324
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    viewport:
+      x: 69.67760368155734
+      y: 89.00422151155169
+      zoom: 0.6375292475712934
+  rag_pipeline_variables: []
