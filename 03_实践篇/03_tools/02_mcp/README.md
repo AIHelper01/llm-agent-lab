@@ -1,9 +1,9 @@
 # Model Context Protocol
 
-English | [Simplified Chinese](README.zh-CN.md)
+[English](../english/02_mcp/README.md) | 简体中文
 
-[English tutorial](01_mcp-theory.md) | [Chinese tutorial](01_mcp-theory.zh-CN.md)
+[中文教程](01_mcp-theory.md) | [英文教程](../english/02_mcp/01_mcp-theory.md)
 
-See the [topic index](../README.md) for setup, runnable examples and tests.
+环境、示例和测试见[专题入口](../README.md)。
 
-[English practice](02_mcp-practice.ipynb) | [Chinese practice](02_mcp-practice.zh-CN.ipynb)
+[中文实战](02_mcp-practice.ipynb) | [英文实战](../english/02_mcp/02_mcp-practice.ipynb)

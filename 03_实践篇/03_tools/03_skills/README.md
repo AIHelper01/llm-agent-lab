@@ -1,7 +1,7 @@
 # Agent Skills
 
-English | [Simplified Chinese](README.zh-CN.md)
+[English](../english/03_skills/README.md) | 简体中文
 
-[English tutorial](skills-theory.md) | [Chinese tutorial](skills-theory.zh-CN.md)
+[中文教程](skills-theory.md) | [英文教程](../english/03_skills/skills-theory.md)
 
-See the [topic index](../README.md) for setup, runnable examples and tests.
+环境、示例和测试见[专题入口](../README.md)。

@@ -39,7 +39,7 @@ llm-agent-lab/
 
 ### 03 · 实践篇
 
-- **[工具专题](03_实践篇/03_tools/README.md)**：Function Calling、MCP 和 Skills；默认英文，中文版本使用 `.zh-CN` 后缀，含天气和文件服务及 Skill 对比案例。
+- **[工具专题](03_实践篇/03_tools/README.md)**：Function Calling、MCP 和 Skills；中文为主，英文版在 `english/` 目录下，含天气和文件服务及 Skill 对比案例。
 - **记忆专题**：记忆与检索、当代 Agent 记忆系统入门，以及 Mem0 / Letta / GBrain 三个记忆项目的快速上手实战
 - **上下文工程**：上下文工程的方法与实践
 

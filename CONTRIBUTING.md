@@ -15,8 +15,8 @@ has separate backend and frontend setup instructions.
 
 ## Documentation and naming
 
-- The `03_实践篇/03_tools` topic defaults to English. Chinese editions use `.zh-CN`.
-  Keep corresponding language editions and relative links aligned.
+- In `03_实践篇/03_tools` the unsuffixed file is the Chinese master and `english/`
+  mirrors it one directory deep. Keep each pair and their relative links aligned.
 - New MCP service names, client keys and primary server scripts use the `w-` prefix.
 - Preserve user data and document migration steps when changing persisted state.
 - Clearly label fixtures and illustrative responses; do not present them as live data.
@@ -25,7 +25,7 @@ has separate backend and frontend setup instructions.
 ## Offline checks
 
 Install `mcp>=1.12,<2`, `python-dotenv`, `requests` and `tzdata` in Python 3.12.
-From `03_实践篇/03_tools/02_mcp/mcp`:
+From `03_实践篇/03_tools/02_mcp/cases`:
 
 ```bash
 python -B -m unittest -v test_forecast test_weather_demo test_bilingual_tools

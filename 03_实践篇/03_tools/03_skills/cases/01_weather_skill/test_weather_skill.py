@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parent
 SCRIPT = ROOT / "w-openweather/scripts/weather.py"
 MCP_SCRIPT = (
     ROOT.parents[2]
-    / "02_mcp/mcp/01_weather-mcp-server/w-openweather_mcp_server.py"
+    / "02_mcp/cases/01_weather-mcp-server/w-openweather_mcp_server.py"
 )
 NOW = datetime(2026, 10, 17, tzinfo=UTC)
 

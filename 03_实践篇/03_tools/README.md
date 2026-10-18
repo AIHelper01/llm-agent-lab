@@ -1,59 +1,73 @@
-# Tools: Function Calling, MCP and Skills
+# 工具专题：Function Calling、MCP 与 Skills
 
-English | [Simplified Chinese](README.zh-CN.md)
+[English](english/README.md) | 简体中文
 
-Learn how a model requests a function call, how MCP exposes reusable capabilities,
-and how a Skill packages instructions and scripts into a repeatable workflow.
-English is the default throughout this topic. Chinese editions use `.zh-CN`.
+本专题以中文为主：目录与文件名统一使用英文，**无后缀文件即中文母本**；英文版集中放在
+`english/` 目录下，与中文树保持一对一的相对路径。服务端脚本、测试、样例文件和图片只保留一份，
+中英文课件共用同一套代码与素材。
 
-| Module | English | Simplified Chinese |
+| 模块 | 中文入口 | 英文入口 |
 | --- | --- | --- |
-| Overview | [Agents and tools](overview.md) | [Overview](overview.zh-CN.md) |
-| Function Calling | [Practice notebook](01_function-calling/01_fc-practice.ipynb) | [Practice notebook](01_function-calling/01_fc-practice.zh-CN.ipynb) |
-| MCP | [Theory](02_mcp/01_mcp-theory.md), [Practice](02_mcp/02_mcp-practice.ipynb) | [Theory](02_mcp/01_mcp-theory.zh-CN.md), [Practice](02_mcp/02_mcp-practice.zh-CN.ipynb) |
-| Skills | [Theory](03_skills/skills-theory.md) | [Theory](03_skills/skills-theory.zh-CN.md) |
-| Weather Skill vs MCP | [Runnable comparison](03_skills/cases/01_weather_skill/README.md) | [Comparison](03_skills/cases/01_weather_skill/README.zh-CN.md) |
+| 总览 | [智能体与工具](overview.md) | [Overview](english/overview.md) |
+| Function Calling | [实战](01_function-calling/01_fc-practice.ipynb) | [Practice](english/01_function-calling/01_fc-practice.ipynb) |
+| MCP | [理论](02_mcp/01_mcp-theory.md)、[实战](02_mcp/02_mcp-practice.ipynb) | [Theory](english/02_mcp/01_mcp-theory.md)、[Practice](english/02_mcp/02_mcp-practice.ipynb) |
+| Skills | [理论](03_skills/skills-theory.md) | [Theory](english/03_skills/skills-theory.md) |
+| 天气 Skill 与 MCP 对比 | [案例](03_skills/cases/01_weather_skill/README.md) | [Case](english/03_skills/cases/01_weather_skill/README.md) |
 
-## Runnable MCP examples
+目录改为 `03_tools/01_function-calling`、`02_mcp`、`03_skills`，旧启动配置中的路径需要同步更新。
+MCP 保持 `w-` 前缀，文件样例和恢复历史保留。已安装的天气 Skill 为自包含脚本，不依赖仓库路径。
 
-- [Basic and time tools](02_mcp/mcp/00_mcp-server-demo/README.md)
-- [OpenWeather current weather and forecasts](02_mcp/mcp/01_weather-mcp-server/README.md)
-- [File Workbench](02_mcp/mcp/02_file-mcp-server/README.md)
-- [Optimization notes](02_mcp/mcp/OPTIMIZATION.md)
+MCP 服务说明与工具描述为中英双语（中文在前、英文在后），模型和两种语言的学员读同一份即可。返回的提示与天气描述默认英文，使用 `language="zh"` 切换中文；JSON 字段、错误码保持一致，用户数据不翻译。
+天气描述由 OpenWeather 本地化，中文城市名能否解析取决于上游覆盖。
 
-Run examples from their documented working directories. Use Python 3.12 and
-`mcp>=1.12,<2`, `python-dotenv`, `requests`, and `tzdata`. Repository users can
-run `uv sync` from the repository root. For an isolated environment:
+## 可直接运行的 MCP 服务
+
+- [基础与时间工具](02_mcp/cases/00_mcp-server-demo/README.md)
+- [OpenWeather 实时天气与预报](02_mcp/cases/01_weather-mcp-server/README.md)
+- [文件工作台](02_mcp/cases/02_file-mcp-server/README.md)
+- [优化记录](02_mcp/cases/OPTIMIZATION.md)
+
+三个 HTTP 服务是常驻进程，stdio 服务由 Agent 自己拉起。总览如下，启动与客户端写法见各服务文档：
+
+| 服务 | 传输 | 默认地址 | uv 免安装启动（在该服务目录内执行） |
+| --- | --- | --- | --- |
+| `w-MCPDemo` | Streamable HTTP | `http://127.0.0.1:8000/mcp` | `uv run --no-project --with "mcp>=1.12,<2" python w-mcp_demo_server.py` |
+| `w-OpenWeatherMCP` | Streamable HTTP | `http://127.0.0.1:16681/mcp` | `uv run --no-project --with "mcp>=1.12,<2" --with python-dotenv --with requests python w-openweather_mcp_server.py` |
+| `w-FileWorkbenchMCP` | Streamable HTTP | `http://127.0.0.1:16682/mcp` | `uv run --no-project --with "mcp>=1.12,<2" --with python-dotenv python w-file_workbench_mcp_server.py` |
+| `w-TimeMCP` | stdio | 无端口，客户端拉起 | `uv run --no-project --with "mcp>=1.12,<2" --with tzdata python w-time_mcp_server.py` |
+
+每份服务文档都含两节：启动服务（pip 与 uv 三种方式）和在 Agent 中配置（Codex 与 Cherry Studio
+的完整写法）。HTTP 服务在 Codex 里一行即可接入：`codex mcp add <服务名> --url <MCP 地址>`；
+Cherry Studio 走设置 → MCP 服务 → 添加服务器，远程地址字段是 `baseUrl`。
+
+请在各服务文档标注的工作目录内运行示例。环境要求 Python 3.12，依赖 `mcp>=1.12,<2`、
+`python-dotenv`、`requests`、`tzdata`。仓库用户可在仓库根目录执行 `uv sync`；也可以单独准备一个环境：
 
 ```bash
 python -m pip install "mcp>=1.12,<2" python-dotenv requests tzdata
 ```
 
-From `02_mcp/mcp`, run the offline regression suite:
+在 `02_mcp/cases` 目录运行离线回归测试：
 
 ```bash
 python -B -m unittest -v test_forecast test_weather_demo test_bilingual_tools
 python -B -m unittest discover -s 02_file-mcp-server -p "test_file_*.py" -v
 ```
 
-From `03_skills/cases/01_weather_skill`, run `python -B test_weather_skill.py`.
-These tests mock OpenWeather and use temporary files; they consume no real API quota.
-Notebook model/API calls are interactive exercises and require your own credentials.
-Their example responses are illustrative, not live weather.
+在 `03_skills/cases/01_weather_skill` 目录运行 `python -B test_weather_skill.py`。上述测试对
+OpenWeather 打桩并使用临时文件，不消耗真实 API 额度。Notebook 中的模型与 API 调用属于交互练习，
+需要你自己的凭证；其中的示例响应仅作演示，不是真实天气。
 
-## Language and migration
+## 语言与迁移
 
-Tool descriptions and messages default to English. Pass `language="zh"` for Chinese
-or `language="en"` explicitly. JSON keys and error codes stay stable. User file names,
-content and city inputs retain their language; the option does not translate user data.
-OpenWeather controls city resolution and localized weather descriptions.
+服务说明与工具描述中英双语呈现（中文在前、英文在后），客户端工具面板一次显示两种语言。返回的提示与天气描述默认英文，传 `language="zh"` 切换中文，也可显式传 `language="en"`；JSON 字段与错误码保持一致。用户文件名、正文内容和城市输入保持原语言，该开关不翻译用户数据。城市解析与天气
+描述的中文化由 OpenWeather 决定。
 
-The topic is now `03_tools`, with `01_function-calling`, `02_mcp`, and `03_skills`.
-Update launch paths and notebook bookmarks that used the previous directory names.
-All primary MCP scripts and client configuration keys use `w-`. File recovery data
-and sample files are retained. The installed `w-openweather` Skill is self-contained
-and does not depend on the repository directory name.
+专题目录为 `03_tools/01_function-calling`、`02_mcp`、`03_skills`，旧启动配置和 Notebook 书签中的
+路径需要同步更新。MCP 服务名、客户端配置键与主脚本统一使用 `w-` 前缀；文件恢复数据和样例文件保留。
+已安装的 `w-openweather` Skill 是自包含脚本，不依赖仓库目录名。
 
-Tutorial figures retained from the original course may contain Chinese labels;
-English text and captions explain their meaning. The `.zh-CN` editions preserve
-the original detailed Chinese teaching material.
+英文版整体位于 `english/`，与中文课件同名同层级，便于逐句对照。
+`03_skills/cases/01_weather_skill/w-openweather/SKILL.md` 是给模型执行的功能清单，只保留单份版本。
+原课件图片保留，图片内可能包含中文；英文正文提供相应说明。双语结构由
+`scripts/check_bilingual_parity.py` 校验。

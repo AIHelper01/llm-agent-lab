@@ -28,11 +28,14 @@ jobs:
       - name: Install standalone test dependencies
         run: python -m pip install "mcp>=1.12,<2" python-dotenv requests tzdata
       - name: Weather, demo and bilingual regression
-        working-directory: 03_实践篇/03_tools/02_mcp/mcp
+        working-directory: 03_实践篇/03_tools/02_mcp/cases
         run: python -B -m unittest -v test_forecast test_weather_demo test_bilingual_tools
       - name: File lifecycle and HTTP regression
-        working-directory: 03_实践篇/03_tools/02_mcp/mcp
+        working-directory: 03_实践篇/03_tools/02_mcp/cases
         run: python -B -m unittest discover -s 02_file-mcp-server -p "test_file_*.py" -v
       - name: Skill comparison
         working-directory: 03_实践篇/03_tools/03_skills/cases/01_weather_skill
         run: python -B test_weather_skill.py
+      - name: Bilingual layout parity
+        working-directory: 03_实践篇/03_tools
+        run: python -B scripts/check_bilingual_parity.py
