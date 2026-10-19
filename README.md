@@ -15,8 +15,10 @@ llm-agent-lab/
 ├── assets/             # 教程图片资源
 ├── Recycled/           # 历史/草稿文档归档
 ├── 模型统一配置说明.ipynb  # 各家模型 API 的统一调用配置示例
-├── pyproject.toml      # uv 项目配置（Python ≥ 3.12）
-└── requirements.txt    # pip 依赖清单
+├── pyproject.toml      # uv 项目配置（Python ≥ 3.12，全量课程依赖）
+├── uv.lock             # uv 依赖锁文件（版本完全锁定）
+├── .python-version     # uv 固定使用 Python 3.12
+└── requirements.txt    # pip 依赖清单（与 pyproject 同版本，供 conda/pip 使用）
 ```
 
 ### 01 · 理论篇
@@ -63,40 +65,44 @@ llm-agent-lab/
 - Jupyter Notebook 或 JupyterLab
 - VSCode
 
-推荐使用 Python 3.12，并为项目创建独立虚拟环境。以下两种方式任选其一。
+推荐使用 Python 3.12，并为项目创建独立虚拟环境。根目录的 `pyproject.toml`、`uv.lock`、
+`.python-version` 共同定义唯一环境，以下两种方式任选其一。
 
 ```bash
 git clone https://github.com/AIHelper01/llm-agent-lab.git
 cd llm-agent-lab
 ```
 
-### 方式一：Conda
+### 方式一：uv（推荐）
+
+`uv sync` 会读取 `.python-version` 自动准备 Python 3.12，并在根目录生成 `.venv/`（已忽略，不提交）。
+仓库内所有 Python 命令都用 `uv run` 前缀执行，无需手动激活环境。
+
+```bash
+uv sync --locked        # 严格按 uv.lock 安装全部课程依赖
+
+uv run python main.py   # 验证环境可用，输出 Hello from 3-4llm-agent!
+
+uv run ipython kernel install \
+--user \
+--name env_agent \
+--display-name "Python 3.12 (env_agent)"
+```
+
+依赖升级流程：`uv add <包>` 或 `uv lock --upgrade-package <包>`，随后提交更新后的 `pyproject.toml` 与 `uv.lock`。
+
+### 方式二：Conda + pip
 
 ```bash
 conda create --name env_agent python=3.12 -y
 
 conda activate env_agent
 
-pip install ipykernel
+pip install -r requirements.txt
 
 python -m ipykernel install \
 --user \
 --name=env_agent \
---display-name "Python 3.12 (env_agent)"
-```
-
-### 方式二：uv （推荐）
-
-```bash
-uv venv --python=3.12
-
-uv sync
-
-uv add ipykernel
-
-uv run ipython kernel install \
---user \
---name env_agent \
 --display-name "Python 3.12 (env_agent)"
 ```
 

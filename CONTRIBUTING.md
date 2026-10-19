@@ -9,9 +9,21 @@ Use Python 3.12. Copy `.env.example` to `.env` and configure only the services
 required by the example you are running. Never commit API keys, private endpoints,
 notebook execution output containing credentials, or local MCP recovery state.
 
-The full course dependency set is in `pyproject.toml` and `uv.lock`. Standalone
-examples also document their smaller dependency sets. The trip-planner application
-has separate backend and frontend setup instructions.
+The full course dependency set is in `pyproject.toml` and `uv.lock`, and
+`.python-version` pins the interpreter to Python 3.12. From the repository root:
+
+```bash
+uv sync --locked                       # creates the gitignored root .venv/
+uv run python main.py                  # smoke test
+uv run jupyter lab                     # course notebooks
+```
+
+Prefix every Python command with `uv run`; do not add per-directory environments.
+Change dependencies with `uv add <package>` (or `uv lock --upgrade-package <package>`)
+and commit the resulting `pyproject.toml` and `uv.lock` together. `requirements.txt`
+mirrors the same pinned versions for conda/pip users. Standalone examples also
+document their smaller dependency sets. The trip-planner application has separate
+backend and frontend setup instructions.
 
 ## Documentation and naming
 
